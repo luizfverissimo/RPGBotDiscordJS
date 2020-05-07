@@ -1,7 +1,5 @@
 #config.json do BOT
-config*
-config.*
-/config.*
+config.json
 
 # Logs
 logs
@@ -107,4 +105,4 @@ dist
 
 # TernJS port file
 .tern-port
-config.json
+
