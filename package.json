@@ -1,0 +1,22 @@
+{
+  "name": "rpgbotdiscordjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizfverissimo/RPGBotDiscordJS.git"
+  },
+  "author": "Luiz Fernando Verissimo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizfverissimo/RPGBotDiscordJS/issues"
+  },
+  "homepage": "https://github.com/luizfverissimo/RPGBotDiscordJS#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
+}
