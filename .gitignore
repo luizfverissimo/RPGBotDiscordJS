@@ -1,5 +1,7 @@
 #config.json do BOT
 config*
+config.*
+/config.*
 
 # Logs
 logs
