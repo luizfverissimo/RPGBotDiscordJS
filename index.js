@@ -3,6 +3,8 @@ const client = new Discord.Client()
 const config = require('./config.json')
 const fs = require('fs')
 
+
+
 //////////////////////////////////////////////////////////////////////////////
 //BOT LOGIN:
 client.login(config.token)
@@ -34,6 +36,8 @@ client.on('message', async message => {
 
   if(!client.commands.has(command)) return
 
+
+  //pega o comando e executa a função do arquivo de comando
   try {
     client.commands.get(command).execute(message, args)
   } catch (error){

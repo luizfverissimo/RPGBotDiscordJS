@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/luizfverissimo/RPGBotDiscordJS#readme",
   "dependencies": {
-    "discord.js": "^12.2.0"
+    "discord.js": "^12.2.0",
+    "mongoose": "^5.9.13"
   }
 }
