@@ -1,23 +1,15 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema
 
-const charSchema = mongoose.Schema({
+const charSchema = Schema({
   userName: String,
   userID: String,
-  charLvl: {
-    type: String,
-    defaut: "0"
-  },
-  gold: {
-    type: String,
-    defaut: "500"
-  },
-  potion: {
-    type: String,
-    defaut: "1"
-  },
+  charLvl: String,
+  gold: String,
+  potion: String,
   equipedItems: {
-    rightHand: String,
-    leftHand: String
+    weapom: String,
+    shield: String
   },
   backpack: {
     slot1: String,
