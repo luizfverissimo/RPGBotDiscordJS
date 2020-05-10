@@ -1,8 +1,8 @@
 const Discord = require('discord.js')
 
 module.exports = {
-  name: "inv",
-  description: "puxar o inventário do char da DB",
+  name: "enemy",
+  description: "Mostra o inimigo engajado.",
   async execute(message, args) {
     const mongoose = require("mongoose");
     const CharDB = require("../models/CharDB.js");
@@ -20,25 +20,21 @@ module.exports = {
         console.log("Database Connected - retrieve");
         //procura o cadastro na DB
         CharDB.findOne({ userID: message.author.id }, (err, char) => {
-          console.log(char);
           if (err) console.log(err);
           
           if (char != undefined) {
-            //render backpack
-            console.log(char.backpack)
 
-            //criando msg
+            //criando msg e encontro com a criatura
             const renderMsg = new Discord.MessageEmbed()
-              .setColor("#e68612")
-              .setTitle(`🎒 Inventário de ${char.userName}:`)
-              .setDescription(`Itens equipados:`)
+              .setColor("#e01616")
+              .setTitle(`Você encontrou um ${char.engCreature.creatureName}!`)
               .addFields(
-                {name: '⚔ Arma:', value: `${char.equipedItems.weapon.weaponName} - ATK: ${char.equipedItems.weapon.weaponAtk} / DMG: ${char.equipedItems.weapon.weaponDmg}`, inline: true},
-                {name: '🛡 Escudo:', value: `${char.equipedItems.shield.shieldName} - DEF: ${char.equipedItems.shield.shieldDef}`, inline: true},
-                {name: '🦺 Armadura:', value: `${char.equipedItems.armor.armorName} - RES: ${char.equipedItems.armor.armorRes}`, inline: true},
-                {name: '\u200B', value: `\u200B`},
-                {name: `**Mochila:** - Slots:${char.backpack.maxSlots}`, value: `${char.backpack}`},
-              )     
+                {name: '❤ Vida:', value: `${char.engCreature.creatureHp.currHp}/${char.engCreature.creatureHp.maxHp}` , inline: true},
+                {name: '⚔ Arma:', value: `${char.engCreature.creatureWeapon.nome} - ATK: ${char.engCreature.creatureWeapon.atk} / DMG: ${char.engCreature.creatureWeapon.dmg}` , inline: true},
+                {name: '🛡 Armadura:', value: `RES: ${char.engCreature.creatureArmor.res}`, inline: true},
+              )
+              
+
             //render
             message.channel.send(renderMsg)
 

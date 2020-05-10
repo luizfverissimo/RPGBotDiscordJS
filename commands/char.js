@@ -5,7 +5,7 @@ module.exports = {
   description: "puxar o char da DB",
   async execute(message, args) {
     const mongoose = require("mongoose");
-    const CharDB = require("../models/charDB.js");
+    const CharDB = require("../models/CharDB.js");
 
     const uri = `mongodb+srv://${process.env.mongoUser}:${process.env.mongoPassword}@cluster0-v4wt0.gcp.mongodb.net/charDB?retryWrites=true&w=majority`;
 
@@ -35,7 +35,7 @@ module.exports = {
                 {name: '💰 Ouro:', value: `${char.gold} gp`, inline: true},
                 {name: '🧴 Poção de vida:', value: `${char.potions.currPotions}/${char.potions.maxPotions}`, inline: true},
                 {name: '\u200B', value: `\u200B`},
-                {name: '⚔ Status de combate:', value: `${char.engCreature.creatureName}`},
+                {name: '⚔ Status de combate:', value: `Engajado com: ${char.engCreature.creatureName}`},
               )            
             //render
             message.channel.send(renderMsg)

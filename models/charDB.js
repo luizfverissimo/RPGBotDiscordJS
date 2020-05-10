@@ -81,7 +81,6 @@ const charSchema = Schema({
   },
   engCreature:{
     creatureName: String,
-    creatureType: String,
     creatureHp: {
       maxHp: Number,
       currHp: Number
@@ -92,7 +91,6 @@ const charSchema = Schema({
       dmg: Number,
     },
     creatureArmor:{
-      nome: String,
       res: Number,
     }
   },

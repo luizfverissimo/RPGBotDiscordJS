@@ -1,4 +1,4 @@
-const CharDB = require("../models/charDB.js");
+const CharDB = require("../models/CharDB.js");
 const mongoose = require("mongoose");
 
 const uri = `mongodb+srv://${process.env.mongoUser}:${process.env.mongoPassword}@cluster0-v4wt0.gcp.mongodb.net/charDB?retryWrites=true&w=majority`;
@@ -55,6 +55,12 @@ module.exports = {
         char.backpack.slot4.nome = "Vazio"
         char.backpack.slot5.nome = "Vazio"
         char.engCreature.creatureName = 'Não está em combate.'
+        char.engCreature.creatureHp.maxHp = 0
+        char.engCreature.creatureHp.currHp = 0
+        char.engCreature.creatureWeapon.nome = 'Vazio'
+        char.engCreature.creatureWeapon.atk = 0
+        char.engCreature.creatureWeapon.dmg = 0
+        char.engCreature.creatureArmor.res = 0
 
         //sobe o novo char para a DB
         char
