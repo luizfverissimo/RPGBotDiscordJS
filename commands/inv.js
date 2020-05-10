@@ -1,8 +1,8 @@
 const Discord = require('discord.js')
 
 module.exports = {
-  name: "char",
-  description: "puxar o char da DB",
+  name: "inv",
+  description: "puxar o inventário do char da DB",
   async execute(message, args) {
     const mongoose = require("mongoose");
     const CharDB = require("../models/charDB.js");
@@ -24,19 +24,21 @@ module.exports = {
           if (err) console.log(err);
           
           if (char != undefined) {
+            //render backpack
+            console.log(char.backpack)
+
             //criando msg
             const renderMsg = new Discord.MessageEmbed()
               .setColor("#e68612")
-              .setTitle(`Nome: ${char.userName}`)
-              .setDescription(`Guerreiro nível: ${char.charLvl.currLvl}`)
+              .setTitle(`🎒 Inventário de ${char.userName}:`)
+              .setDescription(`Itens equipados:`)
               .addFields(
-                {name: '🧠Experiência:', value: `${char.charLvl.currXp}/${char.charLvl.xpNextLvl}` , inline: true},
-                {name: '❤ Vida:', value: `${char.hitPoints.currHp}/${char.hitPoints.maxHp}` , inline: true},
-                {name: '💰 Ouro:', value: `${char.gold} gp`, inline: true},
-                {name: '🧴 Poção de vida:', value: `${char.potions.currPotions}/${char.potions.maxPotions}`, inline: true},
+                {name: '⚔ Arma:', value: `${char.equipedItems.weapon.weaponName} - ATK: ${char.equipedItems.weapon.weaponAtk} / DMG: ${char.equipedItems.weapon.weaponDmg}`, inline: true},
+                {name: '🛡 Escudo:', value: `${char.equipedItems.shield.shieldName} - DEF: ${char.equipedItems.shield.shieldDef}`, inline: true},
+                {name: '🦺 Armadura:', value: `${char.equipedItems.armor.armorName} - RES: ${char.equipedItems.armor.armorRes}`, inline: true},
                 {name: '\u200B', value: `\u200B`},
-                {name: '⚔ Status de combate:', value: `${char.engCreature.creatureName}`},
-              )            
+                {name: `**Mochila:** - Slots:${char.backpack.maxSlots}`, value: `${char.backpack}`},
+              )     
             //render
             message.channel.send(renderMsg)
 

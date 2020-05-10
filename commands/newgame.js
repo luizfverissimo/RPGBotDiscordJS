@@ -20,9 +20,8 @@ module.exports = {
     const userName = message.author.username;
     const userID = message.author.id;
 
-    CharDB.find({ userID: userID }, (err, data) => {
-      console.log(data)
-      if (data[0] != undefined) {
+    CharDB.findOne({ userID: userID }, (err, data) => {
+      if (data != undefined) {
         message.channel.send(
           `❌ Você já possui um personagem em nossa base de dados, utilize o comando !char para acessa-lo.`
         );
@@ -31,15 +30,31 @@ module.exports = {
         const char = new CharDB({
           userName: userName,
           userID: userID,
-          lastCommand: message.createdAt,
-          gold: "500",
-          charLvl: "0",
-          potion: "1",
         });
-
-        char.equipedItems.weapom = "Knife";
-        char.equipedItems.shield = "(Empty)";
-        console.log(char);
+        
+        char.charLvl.currLvl = 0
+        char.charLvl.currXp = 0
+        char.charLvl.xpNextLvl = 100
+        char.hitPoints.maxHp = 20
+        char.hitPoints.currHp = 20
+        char.gold = 500
+        char.potions.maxPotions = 5
+        char.potions.currPotions = 1
+        char.equipedItems.weapon.weaponName = 'Faca enferrujada'
+        char.equipedItems.weapon.weaponAtk = 1
+        char.equipedItems.weapon.weaponDmg = 1
+        char.equipedItems.weapon.weaponValue = 1
+        char.equipedItems.shield.shieldName = 'Vazio'
+        char.equipedItems.shield.shieldDef = 0
+        char.equipedItems.armor.armorName = 'Vazio'
+        char.equipedItems.armor.armorRes = 0
+        char.backpack.maxSlots = 5
+        char.backpack.slot1.nome = "Vazio"
+        char.backpack.slot2.nome = "Vazio"
+        char.backpack.slot3.nome = "Vazio"
+        char.backpack.slot4.nome = "Vazio"
+        char.backpack.slot5.nome = "Vazio"
+        char.engCreature.creatureName = 'Não está em combate.'
 
         //sobe o novo char para a DB
         char
@@ -48,7 +63,7 @@ module.exports = {
             console.log(res);
             //render resposta
             message.channel.send(
-              "⚔ Seu personagem foi criado! - utilize o comando !char para ver seu personagem."
+              "⚔ Seu personagem foi criado! - utilize o comando **!char** para ver seu personagem."
             );
           })
           .catch((err) => console.log(err));
