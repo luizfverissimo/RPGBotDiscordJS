@@ -44,8 +44,13 @@ module.exports = {
               const rollChar = (Math.floor(Math.random() * 10) +1) + char.equipedItems.arma.atk
               const rollCreature = (Math.floor(Math.random() * 10) +1) + char.engCreature.creatureWeapon.atk
 
-              
+              console.log(rollChar, rollCreature)
               //compara os valores de cada rolagem
+              if(rollChar > rollCreature){
+                console.log('O guerreiro ganhou!')
+              } else {
+                console.log('A criatura ganhou!')
+              }
 
               //
 
