@@ -44,21 +44,21 @@ module.exports = {
         char.potions.maxPotions = 5
         char.potions.currPotions = 1
         //equiped arma
-        char.equipedItems.weapon.weaponName = 'Faca enferrujada'
-        char.equipedItems.weapon.weaponType = 'arma'
-        char.equipedItems.weapon.weaponAtk = 1
-        char.equipedItems.weapon.weaponDmg = 1
-        char.equipedItems.weapon.weaponValue = 1
+        char.equipedItems.arma.nome = 'Faca enferrujada'
+        char.equipedItems.arma.tipo = 'arma'
+        char.equipedItems.arma.atk = 1
+        char.equipedItems.arma.dmg = 1
+        char.equipedItems.arma.val = 1
         //equiped escudo
-        char.equipedItems.shield.shieldName = 'Vazio'
-        char.equipedItems.shield.shieldType = 'Vazio'
-        char.equipedItems.shield.shieldDef = 0
-        char.equipedItems.shield.shieldValue = 0
+        char.equipedItems.escudo.nome = 'Vazio'
+        char.equipedItems.escudo.tipo = 'Vazio'
+        char.equipedItems.escudo.def = 0
+        char.equipedItems.escudo.val = 0
         //equiped armadura
-        char.equipedItems.armor.armorName = 'Vazio'
-        char.equipedItems.armor.armorType = 'Vazio'
-        char.equipedItems.armor.armorRes = 0
-        char.equipedItems.armor.armorValue = 0
+        char.equipedItems.armadura.nome = 'Vazio'
+        char.equipedItems.armadura.tipo = 'Vazio'
+        char.equipedItems.armadura.res = 0
+        char.equipedItems.armadura.val = 0
         //backpack
         char.backpack.maxSlots = 5
         //slot1

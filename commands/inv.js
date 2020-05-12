@@ -33,9 +33,9 @@ module.exports = {
               .setTitle(`🎒 Inventário de ${char.userName}:`)
               .setDescription(`Itens equipados:`)
               .addFields(
-                {name: '⚔ Arma:', value: `${char.equipedItems.weapon.weaponName} - ATK: ${char.equipedItems.weapon.weaponAtk} / DMG: ${char.equipedItems.weapon.weaponDmg}`, inline: true},
-                {name: '🛡 Escudo:', value: `${char.equipedItems.shield.shieldName} - DEF: ${char.equipedItems.shield.shieldDef}`, inline: true},
-                {name: '🦺 Armadura:', value: `${char.equipedItems.armor.armorName} - RES: ${char.equipedItems.armor.armorRes}`, inline: true},
+                {name: '⚔ Arma:', value: `${char.equipedItems.arma.nome} - ATK: ${char.equipedItems.arma.atk} / DMG: ${char.equipedItems.arma.dmg}`, inline: true},
+                {name: '🛡 Escudo:', value: `${char.equipedItems.escudo.nome} - DEF: ${char.equipedItems.escudo.def}`, inline: true},
+                {name: '🦺 Armadura:', value: `${char.equipedItems.armadura.nome} - RES: ${char.equipedItems.armadura.res}`, inline: true},
                 {name: '\u200B', value: `\u200B`},
                 {name: `**Mochila:** - Slots:${char.backpack.maxSlots}`, value: `\u200b`},
                 {name: '📦 Slot 1:', value: `${char.backpack.slot1.nome}`},

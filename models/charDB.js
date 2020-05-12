@@ -19,24 +19,24 @@ const charSchema = Schema({
     currPotions: Number
   },
   equipedItems: {
-    weapon:{
-      weaponName: String,
-      weaponType: String,
-      weaponAtk: Number,
-      weaponDmg: Number,
-      weaponValue: Number
+    arma:{
+      nome: String,
+      tipo: String,
+      atk: Number,
+      dmg: Number,
+      val: Number
     },
-    shield:{
-      shieldName: String,
-      shieldType: String,
-      shieldDef: Number,
-      shieldValue: Number
+    escudo:{
+      nome: String,
+      tipo: String,
+      def: Number,
+      val: Number
     },
-    armor:{
-      armorName: String,
-      armorType: String,
-      armorRes: Number,
-      armorValue: Number
+    armadura:{
+      nome: String,
+      tipo: String,
+      res: Number,
+      val: Number
     }
   },
   backpack: {
@@ -88,6 +88,7 @@ const charSchema = Schema({
     },
   },
   engCreature:{
+    emCombate: Boolean,
     creatureName: String,
     creatureHp: {
       maxHp: Number,

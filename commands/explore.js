@@ -99,6 +99,7 @@ module.exports = {
             char.engCreature.creatureWeapon.atk = creature.atk
             char.engCreature.creatureWeapon.dmg = creature.dmg
             char.engCreature.creatureArmor.res = creature.armor
+            char.engCreature.emCombate = true
 
             console.log(char.engCreature)
             char.save()

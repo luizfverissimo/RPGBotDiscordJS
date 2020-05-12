@@ -53,11 +53,11 @@ module.exports = {
                 );
               } else if (slotItem.tipo === "arma") {
                 //armazena as informações do item equipado
-                const equipedNome = char.equipedItems.weapon.weaponName;
-                const equipedTipo = char.equipedItems.weapon.weaponType;
-                const equipedAtk = char.equipedItems.weapon.weaponAtk;
-                const equipedDmg = char.equipedItems.weapon.weaponDmg;
-                const equipedVal = char.equipedItems.weapon.weaponValue;
+                const equipedNome = char.equipedItems.arma.nome;
+                const equipedTipo = char.equipedItems.arma.tipo;
+                const equipedAtk = char.equipedItems.arma.atk;
+                const equipedDmg = char.equipedItems.arma.dmg;
+                const equipedVal = char.equipedItems.arma.val;
 
                 //render a troca - está antes de trocar os itens
                 message.channel.send(
@@ -65,11 +65,11 @@ module.exports = {
                 );
 
                 //adicionar as informações do slot para o item equipado
-                char.equipedItems.weapon.weaponName = slotItem.nome;
-                char.equipedItems.weapon.weaponType = slotItem.tipo;
-                char.equipedItems.weapon.weaponAtk = slotItem.atk;
-                char.equipedItems.weapon.weaponDmg = slotItem.dmg;
-                char.equipedItems.weapon.weaponValue = slotItem.val;
+                char.equipedItems.arma.nome = slotItem.nome;
+                char.equipedItems.arma.tipo = slotItem.tipo;
+                char.equipedItems.arma.atk = slotItem.atk;
+                char.equipedItems.arma.dmg = slotItem.dmg;
+                char.equipedItems.arma.val = slotItem.val;
 
                 //adicionar as informações salvas do item equipado para o slot
                 char.backpack[args[0]].nome = equipedNome;
@@ -82,10 +82,10 @@ module.exports = {
 
               } else if (slotItem.tipo === "escudo") {
                 //armazena as informações do item equipado
-                const equipedNome = char.equipedItems.shield.shieldName;
-                const equipedTipo = char.equipedItems.shield.shieldType;
-                const equipedDef = char.equipedItems.shield.shieldDef;
-                const equipedVal = char.equipedItems.shield.shieldValue;
+                const equipedNome = char.equipedItems.escudo.nome;
+                const equipedTipo = char.equipedItems.escudo.tipo;
+                const equipedDef = char.equipedItems.escudo.def;
+                const equipedVal = char.equipedItems.escudo.val;
 
                 //render a troca - está antes de trocar os itens
                 message.channel.send(
@@ -93,10 +93,10 @@ module.exports = {
                 );
 
                 //adicionar as informações do slot para o item equipado
-                char.equipedItems.shield.shieldName = slotItem.nome;
-                char.equipedItems.shield.shieldType = slotItem.tipo;
-                char.equipedItems.shield.shieldDef = slotItem.def;
-                char.equipedItems.shield.shieldValue = slotItem.val;
+                char.equipedItems.escudo.nome = slotItem.nome;
+                char.equipedItems.escudo.tipo = slotItem.tipo;
+                char.equipedItems.escudo.def = slotItem.def;
+                char.equipedItems.escudo.val = slotItem.val;
 
                 //adicionar as informações salvas do item equipado para o slot
                 char.backpack[args[0]].nome = equipedNome;
@@ -108,10 +108,10 @@ module.exports = {
                 char.backpack[args[0]].val = equipedVal;
               } else if (slotItem.tipo === "armadura") {
                 //armazena as informações do item equipado
-                const equipedNome = char.equipedItems.armor.armorName;
-                const equipedTipo = char.equipedItems.armor.armorType;
-                const equipedRes = char.equipedItems.armor.armorRes;
-                const equipedVal = char.equipedItems.armor.armorValue;
+                const equipedNome = char.equipedItems.armadura.nome;
+                const equipedTipo = char.equipedItems.armadura.tipo;
+                const equipedRes = char.equipedItems.armadura.res;
+                const equipedVal = char.equipedItems.armadura.val;
 
                 //render a troca - está antes de trocar os itens
                 message.channel.send(
@@ -119,10 +119,10 @@ module.exports = {
                 );
 
                 //adicionar as informações do slot para o item equipado
-                char.equipedItems.armor.armorName = slotItem.nome;
-                char.equipedItems.armor.armorType = slotItem.tipo;
-                char.equipedItems.armor.armorRes = slotItem.res;
-                char.equipedItems.armor.armorValue = slotItem.val;
+                char.equipedItems.armadura.nome = slotItem.nome;
+                char.equipedItems.armadura.tipo = slotItem.tipo;
+                char.equipedItems.armadura.res = slotItem.res;
+                char.equipedItems.armadura.val = slotItem.val;
 
                 //adicionar as informações salvas do item equipado para o slot
                 char.backpack[args[0]].nome = equipedNome;
