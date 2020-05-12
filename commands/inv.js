@@ -37,13 +37,18 @@ module.exports = {
                 {name: '🛡 Escudo:', value: `${char.equipedItems.shield.shieldName} - DEF: ${char.equipedItems.shield.shieldDef}`, inline: true},
                 {name: '🦺 Armadura:', value: `${char.equipedItems.armor.armorName} - RES: ${char.equipedItems.armor.armorRes}`, inline: true},
                 {name: '\u200B', value: `\u200B`},
-                {name: `**Mochila:** - Slots:${char.backpack.maxSlots}`, value: `${char.backpack}`},
+                {name: `**Mochila:** - Slots:${char.backpack.maxSlots}`, value: `\u200b`},
+                {name: '📦 Slot 1:', value: `${char.backpack.slot1.nome}`},
+                {name: '📦 Slot 2:', value: `${char.backpack.slot2.nome}`},
+                {name: '📦 Slot 3:', value: `${char.backpack.slot3.nome}`},
+                {name: '📦 Slot 4:', value: `${char.backpack.slot4.nome}`},
+                {name: '📦 Slot 5:', value: `${char.backpack.slot5.nome}`},
               )     
             //render
             message.channel.send(renderMsg)
 
           } else {
-            message.channel.send(
+            message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
             );
           }

@@ -21,17 +21,20 @@ const charSchema = Schema({
   equipedItems: {
     weapon:{
       weaponName: String,
+      weaponType: String,
       weaponAtk: Number,
       weaponDmg: Number,
       weaponValue: Number
     },
     shield:{
       shieldName: String,
+      shieldType: String,
       shieldDef: Number,
       shieldValue: Number
     },
     armor:{
       armorName: String,
+      armorType: String,
       armorRes: Number,
       armorValue: Number
     }
@@ -44,7 +47,8 @@ const charSchema = Schema({
       atk: Number,
       dmg: Number,
       def: Number,
-      res: Number
+      res: Number,
+      val: Number
     },
     slot2: {
       nome: String,
@@ -52,7 +56,8 @@ const charSchema = Schema({
       atk: Number,
       dmg: Number,
       def: Number,
-      res: Number
+      res: Number,
+      val: Number
     },
     slot3: {
       nome: String,
@@ -60,7 +65,8 @@ const charSchema = Schema({
       atk: Number,
       dmg: Number,
       def: Number,
-      res: Number
+      res: Number,
+      val: Number
     },
     slot4: {
       nome: String,
@@ -68,7 +74,8 @@ const charSchema = Schema({
       atk: Number,
       dmg: Number,
       def: Number,
-      res: Number
+      res: Number,
+      val: Number
     },
     slot5: {
       nome: String,
@@ -76,7 +83,8 @@ const charSchema = Schema({
       atk: Number,
       dmg: Number,
       def: Number,
-      res: Number
+      res: Number,
+      val: Number
     },
   },
   engCreature:{
