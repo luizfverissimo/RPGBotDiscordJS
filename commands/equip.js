@@ -106,6 +106,7 @@ module.exports = {
                 char.backpack[args[0]].def = equipedDef;
                 char.backpack[args[0]].res = 0;
                 char.backpack[args[0]].val = equipedVal;
+                
               } else if (slotItem.tipo === "armadura") {
                 //armazena as informações do item equipado
                 const equipedNome = char.equipedItems.armadura.nome;

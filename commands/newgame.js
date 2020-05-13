@@ -103,6 +103,7 @@ module.exports = {
         char.backpack.slot5.val = 0
         //creature
         char.engCreature.creatureName = 'Não está em combate.'
+        char.engCreature.emCombate = false
         char.engCreature.creatureHp.maxHp = 0
         char.engCreature.creatureHp.currHp = 0
         char.engCreature.creatureWeapon.nome = 'Vazio'

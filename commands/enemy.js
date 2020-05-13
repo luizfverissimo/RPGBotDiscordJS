@@ -1,4 +1,4 @@
-const Discord = require('discord.js')
+const Discord = require("discord.js");
 
 module.exports = {
   name: "enemy",
@@ -21,23 +21,38 @@ module.exports = {
         //procura o cadastro na DB
         CharDB.findOne({ userID: message.author.id }, (err, char) => {
           if (err) console.log(err);
-          
-          if (char != undefined) {
 
+          if (char != undefined) {
             //criando msg e encontro com a criatura
             const renderMsg = new Discord.MessageEmbed()
               .setColor("#e01616")
               .setTitle(`Você encontrou um ${char.engCreature.creatureName}!`)
               .addFields(
-                {name: '❤ Vida:', value: `${char.engCreature.creatureHp.currHp}/${char.engCreature.creatureHp.maxHp}` , inline: true},
-                {name: '⚔ Arma:', value: `${char.engCreature.creatureWeapon.nome} - ATK: ${char.engCreature.creatureWeapon.atk} / DMG: ${char.engCreature.creatureWeapon.dmg}` , inline: true},
-                {name: '🛡 Armadura:', value: `RES: ${char.engCreature.creatureArmor.res}`, inline: true},
-              )
-              
+                {
+                  name: "❤ Vida:",
+                  value: `${char.engCreature.creatureHp.currHp}/${char.engCreature.creatureHp.maxHp}`,
+                  inline: true,
+                },
+                {
+                  name: "⚔ Arma:",
+                  value: `${char.engCreature.creatureWeapon.nome} - ATK: ${char.engCreature.creatureWeapon.atk} / DMG: ${char.engCreature.creatureWeapon.dmg}`,
+                  inline: true,
+                },
+                {
+                  name: "🛡 Armadura:",
+                  value: `RES: ${char.engCreature.creatureArmor.res}`,
+                  inline: true,
+                }
+              );
 
             //render
-            message.channel.send(renderMsg)
-
+            if (char.engCreature.emCombate) {
+              message.channel.send(renderMsg);
+            } else {
+              message.reply(
+                "Você não está em combate, Guerreiro! Caso queira arrumar briga, siga para as criptas e utilize o comando **!explore**."
+              );
+            }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
