@@ -41,7 +41,7 @@ module.exports = {
             message.channel.send(renderMsg)
 
           } else {
-            message.channel.send(
+            message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
             );
           }

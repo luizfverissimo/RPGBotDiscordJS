@@ -33,12 +33,20 @@ module.exports = {
 
             console.log(item)
             
-            Object.keys(char.backpack).some(el =>{
+            let counter = 0
+            Object.keys(char.backpack).some(el =>{              
               if(char.backpack[el].nome === 'Vazio') {
+                //add atribuitos do item
+                counter++
                 char.backpack[el].nome = 'Trocado'
+                message.reply('O item foi adicionado.')
                 return true                
-              }          
+              }
             })
+
+            if (counter === 0) {
+              message.reply('Você não possui slot vazio para receber o item.')
+            }
             
             char.save()
           } else {

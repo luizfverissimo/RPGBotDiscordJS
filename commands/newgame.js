@@ -111,6 +111,15 @@ module.exports = {
         char.engCreature.creatureWeapon.dmg = 0
         char.engCreature.creatureArmor.res = 0
 
+        //item recebido
+        char.itemRecebido.nome = "Vazio"
+        char.itemRecebido.tipo = "Vazio"
+        char.itemRecebido.atk = 0
+        char.itemRecebido.dmg = 0
+        char.itemRecebido.def = 0
+        char.itemRecebido.res = 0
+        char.itemRecebido.val = 0
+
         //sobe o novo char para a DB
         char
           .save()

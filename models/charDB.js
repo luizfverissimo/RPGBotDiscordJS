@@ -103,6 +103,15 @@ const charSchema = Schema({
       res: Number,
     }
   },
+  itemRecebido: {
+    nome: String,
+    tipo: String,
+    atk: String,
+    dmg: String,
+    def: String,
+    res: String,
+    val: String
+  }
 });
 
 module.exports = mongoose.model('CharDB', charSchema)

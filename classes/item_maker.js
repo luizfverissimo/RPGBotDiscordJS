@@ -95,8 +95,8 @@ class ItemMaker {
 	setName() {
 		this.nome = `${this.nomeProv} ${this.adjective}`
 		return this.nome
-	}
-
+  }
+  
   seletorStatus(dificuldade) {
     if (this.tipo == itemTypes.WEAPON) {
       //Cria bônus de ataque da arma
@@ -136,6 +136,18 @@ class ItemMaker {
 		}
 		return this.atk, this.dmg, this.def, this.res
   }
+
+  seletorVal() {
+    const valorBase = 10
+    if(this.tipo === itemTypes.WEAPON){
+      this.val = this.atk * valorBase
+    } else if (this.tipo === itemTypes.SHIELD){
+      this.val = this.def * valorBase
+    } else if(this.tipo === itemTypes.ARMOR){
+      this.val = this.res * valorBase
+    }
+    return this.val
+  } 
 }
 
 module.exports = ItemMaker

@@ -24,9 +24,6 @@ module.exports = {
           if (err) console.log(err);
           
           if (char != undefined) {
-            //render backpack
-            console.log(char.backpack)
-
             //criando msg
             const renderMsg = new Discord.MessageEmbed()
               .setColor("#e68612")
@@ -43,6 +40,7 @@ module.exports = {
                 {name: '📦 Slot 3:', value: `${char.backpack.slot3.nome}`},
                 {name: '📦 Slot 4:', value: `${char.backpack.slot4.nome}`},
                 {name: '📦 Slot 5:', value: `${char.backpack.slot5.nome}`},
+                {name: '🖐 Item segurado:', value: `${char.itemRecebido.nome}`},
               )     
             //render
             message.channel.send(renderMsg)
