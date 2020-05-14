@@ -8,7 +8,7 @@ class Item{
 		this.level = level
 	}
 
-	seletorTipo(forceType = null){
+	seletorType(forceType = null){
 		if(forceType == null) {
 			const typeRandom = Math.floor(Math.random * 3)
 			if(typeRandom == 2) {
@@ -46,6 +46,39 @@ class Item{
 		}
 		else {
 			this.adjective = forceAdjective
+		}
+	}
+
+	seletorStatus(forceStatus = null) {
+		if(forceStatus == null) {
+			if(this.type == itemTypes.WEAPON) {
+				//Cria bônus de ataque da arma
+				const maxAtk = 3 //valor máximo de ataque
+				const minAtk = 1 //valor mínimo de ataque
+			
+				this.atk = (Math.floor(Math.random() * (maxAtk - minAtk)) + minAtk) * dificuldade
+
+				//Cria dano da arma
+				const maxDmg = 4 //valor máximo de dano
+				const minDmg = 2 //valor mínimo de dano
+			
+				this.dmg = (Math.floor(Math.random() * (maxDmg - minDmg)) + minDmg) * dificuldade
+			}
+			else {
+				const max = 3 //valor máximo de armor
+				const min = 2 //valor mínimo de amor
+
+				this.armor = (Math.floor(Math.random() * (max - min)) + min) * dificuldade
+			}
+		}
+		else {
+			if(this.type == itemTypes.WEAPON) {
+				this.atk = forceStatus.atk
+				this.dmg = forceStatus.dmg
+			}
+			else {
+				this.armor = forceStatus
+			}
 		}
 	}
 }
