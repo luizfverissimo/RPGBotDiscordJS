@@ -36,8 +36,8 @@ module.exports = {
               const rollCreature =
                 Math.floor(Math.random() * 10) + 1 + modifierCreature;
 
-              console.log(rollChar, rollCreature);
               //compara os valores de cada rolagem
+              //char ganha:
               if (rollChar > rollCreature) {
                 //neutraliza o dano com a armadura
                 let dano =
@@ -73,43 +73,48 @@ module.exports = {
                 //confere se a criatura está viva ou não
                 if (char.engCreature.creatureHp.currHp <= 0) {
                   //add experiência
-                  const modificadorXp = char.engCreature.creatureHp.maxHp * (char.charLvl.currLvl + 1)
-                  
-                  const battleXp = Math.floor(Math.random() * 10) + 1 + modificadorXp
-                  char.charLvl.currXp += battleXp
+                  const modificadorXp =
+                    char.engCreature.creatureHp.maxHp *
+                    (char.charLvl.currLvl + 1);
+
+                  const battleXp =
+                    Math.floor(Math.random() * 10) + 1 + modificadorXp;
+                  char.charLvl.currXp += battleXp;
 
                   //verifica se subiu de nível
-                  if(char.charLvl.currXp >= char.charLvl.xpNextLvl){
+                  if (char.charLvl.currXp >= char.charLvl.xpNextLvl) {
                     //modifca o nível do personagem
-                    char.charLvl.currLvl += 1
+                    char.charLvl.currLvl += 1;
 
                     //modifica a experiência necessária para o próximo nível
-                    const xpRestante = char.charLvl.currXp - char.charLvl.xpNextLvl
-                    const incrementoXp = 20 * char.charLvl.currLvl
+                    const xpRestante =
+                      char.charLvl.currXp - char.charLvl.xpNextLvl;
+                    const incrementoXp = 20 * char.charLvl.currLvl;
 
-                    char.charLvl.currXp = xpRestante
-                    char.charLvl.xpNextLvl += incrementoXp
+                    char.charLvl.currXp = xpRestante;
+                    char.charLvl.xpNextLvl += incrementoXp;
 
                     //add mais vida
-                    char.hitPoints.maxHp += 5
-                    
-                    //render msg 
-                    const renderLvlUp = new Discord.MessageEmbed()
-                    .setColor("#e68612")
-                    .setTitle(
-                      `👑 Você subiu para o nível ${char.charLvl.currLvl}! 👑`
-                    )
-                    .addFields({
-                      name: "Experiência para o próximo nível:",
-                      value: `🧠 Você recebeu ${battleXp} xp - xp atual: ${char.charLvl.currXp}/${char.charLvl.xpNextLvl}`,
-                    })
+                    char.hitPoints.maxHp += 5;
 
-                    message.channel.send(renderLvlUp)
+                    //render msg
+                    const renderLvlUp = new Discord.MessageEmbed()
+                      .setColor("#e68612")
+                      .setTitle(
+                        `👑 Você subiu para o nível ${char.charLvl.currLvl}! 👑`
+                      )
+                      .addFields({
+                        name: "Experiência para o próximo nível:",
+                        value: `🧠 Você recebeu ${battleXp} xp - xp atual: ${char.charLvl.currXp}/${char.charLvl.xpNextLvl}`,
+                      });
+
+                    message.channel.send(renderLvlUp);
                   }
-                  
+
                   //add gold
-                  const randomGold = Math.floor(Math.random() * 20) + 1 + modificadorXp
-                  char.gold += randomGold
+                  const randomGold =
+                    Math.floor(Math.random() * 20) + 1 + modificadorXp;
+                  char.gold += randomGold;
 
                   //render
                   const renderDeathCreature = new Discord.MessageEmbed()
@@ -117,18 +122,19 @@ module.exports = {
                     .setTitle(
                       `💀 ${char.engCreature.creatureName} foi derrotado(a)!`
                     )
-                    .addFields({
-                      name: "Experiência",
-                      value: `🧠 Você recebeu ${battleXp} xp - xp atual: ${char.charLvl.currXp}/${char.charLvl.xpNextLvl}`,
-                    },
-                    {
-                      name: "Gold:",
-                      value: `💰 Você recebeu ${randomGold} gp - gp total: ${char.gold} gp`,
-                    },
-                    {
-                      name: "Itens:",
-                      value: `Você achou um item!`,
-                    }
+                    .addFields(
+                      {
+                        name: "Experiência",
+                        value: `🧠 Você recebeu ${battleXp} xp - xp atual: ${char.charLvl.currXp}/${char.charLvl.xpNextLvl}`,
+                      },
+                      {
+                        name: "Gold:",
+                        value: `💰 Você recebeu ${randomGold} gp - gp total: ${char.gold} gp`,
+                      },
+                      {
+                        name: "Itens:",
+                        value: `Você achou um item!`,
+                      }
                     );
                   message.channel.send(renderDeathCreature);
 
@@ -141,10 +147,10 @@ module.exports = {
                   char.engCreature.creatureWeapon.atk = 0;
                   char.engCreature.creatureWeapon.dmg = 0;
                   char.engCreature.creatureArmor.res = 0;
-
-                  ;
                 }
-                char.save()
+                char.save();
+
+                //char perde
               } else {
                 //neutraliza o dano com a armadura
                 let dano =
@@ -154,7 +160,6 @@ module.exports = {
 
                 //atualiza os dados na DB
                 char.hitPoints.currHp -= dano;
-                char.save();
 
                 //render o ganhador e mostra os valores
                 const renderMsgWinner = new Discord.MessageEmbed()
@@ -182,8 +187,64 @@ module.exports = {
                 message.channel.send(renderMsgWinner);
 
                 //confere se o jogador está vivo ou não
+                if (char.hitPoints.currHp <= 0) {
+                  //pagamento da cura
+                  const pagamentoCura = 300;
+                  char.gold -= pagamentoCura;
 
-                //caso não - render o status de incapacitado e
+                  //cura - se o dinheiro zerar, somente metade da vida é recuperada.
+                  if (char.gold < 0) {
+                    char.gold = 0;
+                    char.hitPoints.currHp = Math.ceil(char.hitPoints.maxHp / 2);
+                  } else {
+                    char.hitPoints.currHp = char.hitPoints.maxHp;
+                  }
+
+                  //item que será dropado
+                  const itensEquipados = ["arma", "escudo", "armadura"];
+                  const itemSorteado =
+                    itensEquipados[
+                      Math.floor(Math.random() * itensEquipados.length)
+                    ];
+
+                  //render o status de incapacitado
+                  const renderIncapacitado = new Discord.MessageEmbed()
+                    .setColor("#e01616")
+                    .setTitle(`💤 Você foi incapacitado e não pode mais lutar.`)
+                    .addFields(
+                      {
+                        name:
+                          "Você foi arrastado para fora das criptas e se encontra em uma cama todo enfaixado, você não sabe quantos dias passaram.",
+                        value: `Você pagou **${pagamentoCura} gp** pelos curativos e estalagem - saldo atual: 💰${char.gold}`,
+                      },
+                      {
+                        name: `Provavelmente a criatura levou a(o) ${itemSorteado} que estava equipada(o)`,
+                        value: `Você perdeu a(o) ${char.equipedItems[itemSorteado].nome}.`,
+                      }
+                    );
+                  message.channel.send(renderIncapacitado);
+
+                  //retira o item da DB
+                  char.equipedItems[itemSorteado].nome = "Vazio";
+                  char.equipedItems[itemSorteado].tipo = "Vazio";
+                  char.equipedItems[itemSorteado].atk = 0;
+                  char.equipedItems[itemSorteado].dmg = 0;
+                  char.equipedItems[itemSorteado].res = 0;
+                  char.equipedItems[itemSorteado].def = 0;
+                  char.equipedItems[itemSorteado].val = 0;
+
+                  //retira a criatura do engajamento.
+                  char.engCreature.emCombate = false;
+                  char.engCreature.creatureName = "Não está em combate.";
+                  char.engCreature.creatureHp.maxHp = 0;
+                  char.engCreature.creatureHp.currHp = 0;
+                  char.engCreature.creatureWeapon.nome = "Vazio";
+                  char.engCreature.creatureWeapon.atk = 0;
+                  char.engCreature.creatureWeapon.dmg = 0;
+                  char.engCreature.creatureArmor.res = 0;
+                }
+
+                char.save();
               }
 
               //não possui monstro engajado
