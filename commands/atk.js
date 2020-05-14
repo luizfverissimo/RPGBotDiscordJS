@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const ItemMaker = require("../classes/item_maker");
 
 module.exports = {
   name: "atk",
@@ -115,6 +116,18 @@ module.exports = {
                   const randomGold =
                     Math.floor(Math.random() * 20) + 1 + modificadorXp;
                   char.gold += randomGold;
+
+                  //cria um item randômico
+                  let item = new ItemMaker(char.charLvl.currLvl);
+                  item.seletorType();
+                  item.seletorVariety();
+                  item.seletorAdjective();
+                  item.setName();
+                  item.seletorStatus(item.dificuldade);
+
+                  char.findOne({nome: 'Vazio'}, function (err, res){
+                    console.log(res)
+                  })
 
                   //render
                   const renderDeathCreature = new Discord.MessageEmbed()
