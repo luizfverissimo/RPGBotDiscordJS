@@ -11,7 +11,8 @@ class ItemMaker {
   }
 
   seletorType() {
-    const typeRandom = Math.floor(Math.random() * 3) + 1;
+    const typeRandom = Math.floor(Math.random() * 3);
+    console.log(`Número do random do tipo do item ${typeRandom}`)
     if (typeRandom === 3) {
       this.tipo = itemTypes.ARMOR;
     } else if (typeRandom === 2) {

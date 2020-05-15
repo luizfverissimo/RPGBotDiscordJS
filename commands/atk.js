@@ -143,16 +143,7 @@ module.exports = {
                     }
                   });
 
-                  if (counter === 0) {
-                    char.itemRecebido.nome = item.nome;
-                    char.itemRecebido.tipo = item.tipo;
-                    char.itemRecebido.atk = item.atk;
-                    char.itemRecebido.dmg = item.dmg;
-                    char.itemRecebido.def = item.def;
-                    char.itemRecebido.res = item.res;
-                    char.itemRecebido.val = item.val;
-                  }
-
+                  
                   //render
                   const renderDeathCreature = new Discord.MessageEmbed()
                     .setColor("#e01616")
@@ -195,7 +186,38 @@ module.exports = {
                   
                   //envia msg
                   message.channel.send(renderDeathCreature);
-                  message.channel.send(renderRecebido)
+
+                  if (counter === 0) {
+                    char.itemRecebido.nome = item.nome;
+                    char.itemRecebido.tipo = item.tipo;
+                    char.itemRecebido.atk = item.atk;
+                    char.itemRecebido.dmg = item.dmg;
+                    char.itemRecebido.def = item.def;
+                    char.itemRecebido.res = item.res;
+                    char.itemRecebido.val = item.val;
+
+                    const renderRecebido = new Discord.MessageEmbed()
+                      .setColor("#e68612")
+                      .setTitle(
+                        `📦⛔ Você não possui slot vazio para receber o item, o que deseja fazer com o item recebido?`
+                      )
+                      .addFields({
+                        name: `${char.itemRecebido.nome}`,
+                        value: `ATK:${char.itemRecebido.atk}, DMG: ${char.itemRecebido.dmg}, DEF: ${char.itemRecebido.def}, RES: ${char.itemRecebido.res}, VAL: ${char.itemRecebido.val} gp `,
+                      },
+                        {
+                        name: "!drop slotX",
+                        value: `Descarta o item do respectivo slot do seu inventário.`,
+                      },
+                      {
+                        name: "!take",
+                        value: `Guarda o item recebido no slot vago.`,
+                      }
+                      );
+
+                    message.channel.send(renderRecebido)
+                  }
+                  
 
                   //retira a criatura do engajamento.
                   char.engCreature.emCombate = false;

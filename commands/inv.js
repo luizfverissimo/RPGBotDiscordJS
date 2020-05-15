@@ -20,7 +20,6 @@ module.exports = {
         console.log("Database Connected - retrieve");
         //procura o cadastro na DB
         CharDB.findOne({ userID: message.author.id }, (err, char) => {
-          console.log(char);
           if (err) console.log(err);
           
           if (char != undefined) {

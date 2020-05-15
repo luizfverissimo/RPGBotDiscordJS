@@ -58,7 +58,7 @@ module.exports = {
               return renderMsg;
             };
 
-            if (args[0] && args.length < 2) {
+            if (args[0].includes('slot') && args.length < 2) {
               //render
               if(args[0] === 'arma' || args[0] === 'escudo' || args[0] === 'armadura'){
                 message.channel.send(renderShowItem(char.equipedItems[args[0]]));

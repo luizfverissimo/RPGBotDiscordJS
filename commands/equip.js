@@ -23,9 +23,8 @@ module.exports = {
           if (err) console.log(err);
 
           if (char != undefined) {
-            if (args[0] && args.length < 2) {
+            if (args[0].includes('slot') && args.length < 2) {
               const slotItem = char.backpack[args[0]];
-              console.log(slotItem);
 
               const renderTrocaItem = (velhoNome, velhoTipo, novo) => {
                 //criando msg de troca de item
