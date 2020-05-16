@@ -40,7 +40,7 @@ module.exports = {
 
                 //render encontro
                 const renderEncontro = new Discord.MessageEmbed()
-                  .setColor("#e01616")
+                  .setColor("#e68612")
                   .setTitle(`${encounter.texto}`)
                   .setDescription("Ao investigar você encontrou...");
 
@@ -49,7 +49,7 @@ module.exports = {
                 //render loot do encontro
                 if (encounter.isGold) {
                   const render = new Discord.MessageEmbed()
-                    .setColor("#e01616")
+                    .setColor("#e68612")
                     .setTitle(`💰 Você achou ouro!`)
                     .setDescription(`Receba ${encounter.gold} gp.`);
 
@@ -60,7 +60,7 @@ module.exports = {
 
                 if(encounter.isArma){
                   const render = new Discord.MessageEmbed()
-                    .setColor("#e01616")
+                    .setColor("#e68612")
                     .setTitle(`⚔ Você achou um equipamento!`)
                     .setDescription(`Receba um(a) ${encounter.tipo} - ${encounter.nome}.`)
                     .addFields({
@@ -100,13 +100,26 @@ module.exports = {
 
                 if(encounter.isPotion){
                   const render = new Discord.MessageEmbed()
-                    .setColor("#e01616")
+                    .setColor("#e68612")
                     .setTitle(`🧴 Você achou poção de cura!`)
                     .setDescription(`Receba ${encounter.potion} porção(ões).`);
 
                   char.potions.currPotions += encounter.potion
                   if(char.potions.currPotions >= char.potions.maxPotions){
                     char.potions.currPotions = char.potions.maxPotions
+                  }
+                  message.channel.send(render)
+                }
+
+                if(encounter.isTrap){
+                  const render = new Discord.MessageEmbed()
+                    .setColor("#e01616")
+                    .setTitle(`‼ Você ativou uma armadilha ‼`)
+                    .setDescription(`Perdeu - ${encounter.dano} ❤ - Vida atual: ${char.hitPoints.currHp}/${char.hitPoints.maxHp} ❤.`);
+
+                  char.hitPoints.currHp -= encounter.dano
+                  if(char.hitPoints.currHp <= 0){
+                    char.hitPoints.currHp = 1
                   }
                   message.channel.send(render)
                 }

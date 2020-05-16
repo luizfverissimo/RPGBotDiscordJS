@@ -32,13 +32,12 @@ module.exports = {
                 {name: '⚔ Arma:', value: `${char.equipedItems.arma.nome} - ATK: ${char.equipedItems.arma.atk} / DMG: ${char.equipedItems.arma.dmg}`, inline: true},
                 {name: '🛡 Escudo:', value: `${char.equipedItems.escudo.nome} - DEF: ${char.equipedItems.escudo.def}`, inline: true},
                 {name: '🦺 Armadura:', value: `${char.equipedItems.armadura.nome} - RES: ${char.equipedItems.armadura.res}`, inline: true},
-                {name: '\u200B', value: `\u200B`},
                 {name: `**Mochila:** - Slots:${char.backpack.maxSlots}`, value: `\u200b`},
-                {name: '📦 Slot 1:', value: `${char.backpack.slot1.nome}`},
-                {name: '📦 Slot 2:', value: `${char.backpack.slot2.nome}`},
-                {name: '📦 Slot 3:', value: `${char.backpack.slot3.nome}`},
-                {name: '📦 Slot 4:', value: `${char.backpack.slot4.nome}`},
-                {name: '📦 Slot 5:', value: `${char.backpack.slot5.nome}`},
+                {name: '📦1️⃣ Slot 1:', value: `${char.backpack.slot1.nome}`},
+                {name: '📦2️⃣ Slot 2:', value: `${char.backpack.slot2.nome}`},
+                {name: '📦3️⃣ Slot 3:', value: `${char.backpack.slot3.nome}`},
+                {name: '📦4️⃣ Slot 4:', value: `${char.backpack.slot4.nome}`},
+                {name: '📦5️⃣ Slot 5:', value: `${char.backpack.slot5.nome}`},
                 {name: '🖐 Item segurado:', value: `${char.itemRecebido.nome}`},
               )     
             //render

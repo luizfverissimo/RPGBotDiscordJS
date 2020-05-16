@@ -111,6 +111,63 @@ const charSchema = Schema({
     def: String,
     res: String,
     val: String
+  },
+
+  mktLista:{
+    item1: {
+      nome: String,
+      tipo: String,
+      atk: Number,
+      dmg: Number,
+      def: Number,
+      res: Number,
+      val: Number
+    },
+    item2: {
+      nome: String,
+      tipo: String,
+      atk: Number,
+      dmg: Number,
+      def: Number,
+      res: Number,
+      val: Number
+    },
+    item2: {
+      nome: String,
+      tipo: String,
+      atk: Number,
+      dmg: Number,
+      def: Number,
+      res: Number,
+      val: Number
+    },
+    item3: {
+      nome: String,
+      tipo: String,
+      atk: Number,
+      dmg: Number,
+      def: Number,
+      res: Number,
+      val: Number
+    },
+    item4: {
+      nome: String,
+      tipo: String,
+      atk: Number,
+      dmg: Number,
+      def: Number,
+      res: Number,
+      val: Number
+    },
+    item5: {
+      nome: String,
+      tipo: String,
+      atk: Number,
+      dmg: Number,
+      def: Number,
+      res: Number,
+      val: Number
+    },
   }
 });
 

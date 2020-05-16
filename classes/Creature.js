@@ -12,8 +12,8 @@ class Creature{
   }
 
   seletorHp(dificuldade){
-    const max = 11 //valor máximo de hp
-    const min = 7 //valor mínimo de hp
+    const max = 12 //valor máximo de hp
+    const min = 6 //valor mínimo de hp
 
     const hp = (Math.floor(Math.random() * (max - min)) + min) * dificuldade
     this.maxHp = hp
@@ -28,23 +28,23 @@ class Creature{
     this.weaponName = nome
 
     //Cria bônus de ataque da arma
-    const maxAtk = 3 //valor máximo de ataque
+    const maxAtk = 4 //valor máximo de ataque
     const minAtk = 1 //valor mínimo de ataque
 
     const atk = (Math.floor(Math.random() * (maxAtk - minAtk)) + minAtk) * dificuldade
     this.atk = atk
 
     //Cria dano da arma
-    const maxDmg = 4 //valor máximo de dano
-    const minDmg = 2 //valor mínimo de dano
+    const maxDmg = 6 //valor máximo de dano
+    const minDmg = 1 //valor mínimo de dano
 
     const dmg = (Math.floor(Math.random() * (maxDmg - minDmg)) + minDmg) * dificuldade
     this.dmg = dmg
   }
 
   seletorArmor(dificuldade){
-    const max = 3 //valor máximo de armor
-    const min = 2 //valor mínimo de amor
+    const max = 4 //valor máximo de armor
+    const min = 1 //valor mínimo de amor
 
     const armor = (Math.floor(Math.random() * (max - min)) + min) * dificuldade
     this.armor = armor

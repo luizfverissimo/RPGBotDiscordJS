@@ -11,7 +11,7 @@ class ItemMaker {
   }
 
   seletorType() {
-    const typeRandom = Math.floor(Math.random() * 3);
+    const typeRandom = Math.floor(Math.random() * 3) + 1;
     console.log(`Número do random do tipo do item ${typeRandom}`)
     if (typeRandom === 3) {
       this.tipo = itemTypes.ARMOR;
@@ -101,24 +101,25 @@ class ItemMaker {
   seletorStatus(dificuldade) {
     if (this.tipo == itemTypes.WEAPON) {
       //Cria bônus de ataque da arma
-      const maxAtk = 3; //valor máximo de ataque
+      const maxAtk = 5; //valor máximo de ataque
       const minAtk = 1; //valor mínimo de ataque
 
       this.atk =
         (Math.floor(Math.random() * (maxAtk - minAtk)) + minAtk) * dificuldade;
 
       //Cria dano da arma
-      const maxDmg = 4; //valor máximo de dano
-      const minDmg = 2; //valor mínimo de dano
+      const maxDmg = 5; //valor máximo de dano
+      const minDmg = 1; //valor mínimo de dano
 
       this.dmg =
 				(Math.floor(Math.random() * (maxDmg - minDmg)) + minDmg) * dificuldade;
 				
 			this.res = 0
-			this.def = 0
+      this.def = 0
+      
     } else if (this.tipo === itemTypes.ARMOR) {
-      const max = 4; //valor máximo de armor
-      const min = 2; //valor mínimo de amor
+      const max = 5; //valor máximo de armor
+      const min = 1; //valor mínimo de amor
 
       this.res = (Math.floor(Math.random() * (max - min)) + min) * dificuldade;
 			
@@ -126,8 +127,8 @@ class ItemMaker {
 			this.dmg = 0
 			this.def = 0
     } else {
-			const max = 3; //valor máximo de shield
-      const min = 2; //valor mínimo de shield
+			const max = 5; //valor máximo de shield
+      const min = 1; //valor mínimo de shield
 
       this.def =
 				(Math.floor(Math.random() * (max - min)) + min) * dificuldade;
@@ -140,12 +141,13 @@ class ItemMaker {
 
   seletorVal() {
     const valorBase = 10
+    const valorMod = valorBase + Math.ceil(Math.random() * 20)
     if(this.tipo === itemTypes.WEAPON){
-      this.val = this.atk * valorBase
+      this.val = this.atk * valorMod
     } else if (this.tipo === itemTypes.SHIELD){
-      this.val = this.def * valorBase
+      this.val = this.def * valorMod
     } else if(this.tipo === itemTypes.ARMOR){
-      this.val = this.res * valorBase
+      this.val = this.res * valorMod
     }
     return this.val
   } 

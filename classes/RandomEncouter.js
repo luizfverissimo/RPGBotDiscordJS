@@ -62,7 +62,8 @@ class RandomEncounter {
     //2 = arma na dificuldade
     //3 = arma boa
     //4 = poção de cura
-    const randomLoot = Math.floor(Math.random() * 4) + 1;
+    //5 = it's a trappppp!
+    const randomLoot = Math.floor(Math.random() * 5) + 1;
 
     const goldGenerator = (dificuldade) => {
       const min = 10;
@@ -119,6 +120,10 @@ class RandomEncounter {
     } else if (randomLoot === 4) {
       this.isPotion = true;
       this.potion = Math.floor(Math.random() * 2) + 1
+
+    } else if (randomLoot === 5){
+      this.isTrap = true
+      this.dano = Math.floor((Math.random() * 2) + 1) * dificuldade
     }
   }
 }
