@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const ItemMaker = require('../classes/item_maker')
+const RandomEncounter = require('../classes/RandomEncouter')
 
 module.exports = {
   name: "newitem",
@@ -31,24 +32,11 @@ module.exports = {
             item.setName()
             item.seletorStatus(item.dificuldade)
 
-            console.log(item)
-            
-            let counter = 0
-            Object.keys(char.backpack).some(el =>{              
-              if(char.backpack[el].nome === 'Vazio') {
-                //add atribuitos do item
-                counter++
-                char.backpack[el].nome = 'Trocado'
-                message.reply('O item foi adicionado.')
-                return true                
-              }
-            })
+            let encounter = new RandomEncounter(char.charLvl.currLvl)
+            encounter.generateRandom(encounter.dificuldade)
 
-            if (counter === 0) {
-              message.reply('Você não possui slot vazio para receber o item.')
-            }
-            
-            char.save()
+            console.log(encounter)
+
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
