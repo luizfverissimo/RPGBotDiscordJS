@@ -34,45 +34,19 @@ module.exports = {
               let lista = new ItemList(char.charLvl.currLvl);
               lista.generateLista(lista.dificuldade);
 
-              char.mktLista.item1.nome = lista.lista.item1.nome;
-              char.mktLista.item1.tipo = lista.lista.item1.tipo;
-              char.mktLista.item1.atk = lista.lista.item1.atk;
-              char.mktLista.item1.dmg = lista.lista.item1.dmg;
-              char.mktLista.item1.def = lista.lista.item1.def;
-              char.mktLista.item1.res = lista.lista.item1.res;
-              char.mktLista.item1.val = lista.lista.item1.val;
+              console.log(lista.lista);
+              console.log(char.mktLista);
 
-              char.mktLista.item2.nome = lista.lista.item2.nome;
-              char.mktLista.item2.tipo = lista.lista.item2.tipo;
-              char.mktLista.item2.atk = lista.lista.item2.atk;
-              char.mktLista.item2.dmg = lista.lista.item2.dmg;
-              char.mktLista.item2.def = lista.lista.item2.def;
-              char.mktLista.item2.res = lista.lista.item2.res;
-              char.mktLista.item2.val = lista.lista.item2.val;
+              Object.keys(char.mktLista && lista.lista).some((el) => {
+                char.mktLista[el].nome = lista.lista[el].nome;
+                char.mktLista[el].tipo = lista.lista[el].tipo;
+                char.mktLista[el].atk = lista.lista[el].atk;
+                char.mktLista[el].dmg = lista.lista[el].dmg;
+                char.mktLista[el].def = lista.lista[el].def;
+                char.mktLista[el].res = lista.lista[el].res;
+                char.mktLista[el].val = lista.lista[el].val;
+              });
 
-              char.mktLista.item3.nome = lista.lista.item3.nome;
-              char.mktLista.item3.tipo = lista.lista.item3.tipo;
-              char.mktLista.item3.atk = lista.lista.item3.atk;
-              char.mktLista.item3.dmg = lista.lista.item3.dmg;
-              char.mktLista.item3.def = lista.lista.item3.def;
-              char.mktLista.item3.res = lista.lista.item3.res;
-              char.mktLista.item3.val = lista.lista.item3.val;
-
-              char.mktLista.item4.nome = lista.lista.item4.nome;
-              char.mktLista.item4.tipo = lista.lista.item4.tipo;
-              char.mktLista.item4.atk = lista.lista.item4.atk;
-              char.mktLista.item4.dmg = lista.lista.item4.dmg;
-              char.mktLista.item4.def = lista.lista.item4.def;
-              char.mktLista.item4.res = lista.lista.item4.res;
-              char.mktLista.item4.val = lista.lista.item4.val;
-
-              char.mktLista.item5.nome = lista.lista.item5.nome;
-              char.mktLista.item5.tipo = lista.lista.item5.tipo;
-              char.mktLista.item5.atk = lista.lista.item5.atk;
-              char.mktLista.item5.dmg = lista.lista.item5.dmg;
-              char.mktLista.item5.def = lista.lista.item5.def;
-              char.mktLista.item5.res = lista.lista.item5.res;
-              char.mktLista.item5.val = lista.lista.item5.val;
 
               const render = new Discord.MessageEmbed()
                 .setColor("#e68612")
