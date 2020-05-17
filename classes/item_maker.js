@@ -13,9 +13,9 @@ class ItemMaker {
   seletorType() {
     const typeRandom = Math.floor(Math.random() * 3) + 1;
     console.log(`Número do random do tipo do item ${typeRandom}`)
-    if (typeRandom === 3) {
+    if (typeRandom === 2) {
       this.tipo = itemTypes.ARMOR;
-    } else if (typeRandom === 2) {
+    } else if (typeRandom === 3) {
       this.tipo = itemTypes.WEAPON;
     } else {
       this.tipo = itemTypes.SHIELD;
@@ -140,7 +140,7 @@ class ItemMaker {
   }
 
   seletorVal() {
-    const valorBase = 10
+    const valorBase = 20
     const valorMod = valorBase + Math.ceil(Math.random() * 20)
     if(this.tipo === itemTypes.WEAPON){
       this.val = this.atk * valorMod

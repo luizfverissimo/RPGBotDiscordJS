@@ -28,7 +28,7 @@ class Creature{
     this.weaponName = nome
 
     //Cria bônus de ataque da arma
-    const maxAtk = 4 //valor máximo de ataque
+    const maxAtk = 5 //valor máximo de ataque
     const minAtk = 1 //valor mínimo de ataque
 
     const atk = (Math.floor(Math.random() * (maxAtk - minAtk)) + minAtk) * dificuldade
@@ -36,7 +36,7 @@ class Creature{
 
     //Cria dano da arma
     const maxDmg = 6 //valor máximo de dano
-    const minDmg = 1 //valor mínimo de dano
+    const minDmg = 2 //valor mínimo de dano
 
     const dmg = (Math.floor(Math.random() * (maxDmg - minDmg)) + minDmg) * dificuldade
     this.dmg = dmg

@@ -51,6 +51,14 @@ module.exports = {
                     value: `ATK:${char.mktLista.item5.atk}, DMG: ${char.mktLista.item5.dmg}, DEF: ${char.mktLista.item5.def}, RES: ${char.mktLista.item5.res}`,
                   },
                   {
+                    name: `🧴 **Poções de cura:**`,
+                    value: `Por 30 gp você compra uma poção de cura.`,
+                  },
+                  {
+                    name: `\u200b`,
+                    value: `💸 Utilize o comando **!buy itemX ou !buy potion** para comprar itens.`,
+                  },
+                  {
                     name: `\u200b`,
                     value: `Pagando 10 gp você pode gerar uma nova lista de itens com o comando **!newlist**`,
                   }

@@ -112,15 +112,16 @@ module.exports = {
                 }
 
                 if(encounter.isTrap){
-                  const render = new Discord.MessageEmbed()
-                    .setColor("#e01616")
-                    .setTitle(`‼ Você ativou uma armadilha ‼`)
-                    .setDescription(`Perdeu - ${encounter.dano} ❤ - Vida atual: ${char.hitPoints.currHp}/${char.hitPoints.maxHp} ❤.`);
 
                   char.hitPoints.currHp -= encounter.dano
                   if(char.hitPoints.currHp <= 0){
                     char.hitPoints.currHp = 1
                   }
+
+                  const render = new Discord.MessageEmbed()
+                    .setColor("#e01616")
+                    .setTitle(`‼ Você ativou uma armadilha ‼`)
+                    .setDescription(`Perdeu - ${encounter.dano} ❤ - Vida atual: ${char.hitPoints.currHp}/${char.hitPoints.maxHp} ❤.`);                  
                   message.channel.send(render)
                 }
 

@@ -41,9 +41,10 @@ module.exports = {
               //char ganha:
               if (rollChar > rollCreature) {
                 //neutraliza o dano com a armadura
-                let dano =
-                  char.equipedItems.arma.dmg -
-                  char.engCreature.creatureArmor.res;
+                let roll = (Math.floor(Math.random() * 3) + 1)
+                let dano = roll + 
+                  (char.equipedItems.arma.dmg -
+                  char.engCreature.creatureArmor.res)
 
                 if (dano < 0) dano = 0;
 
@@ -61,7 +62,7 @@ module.exports = {
                     },
                     {
                       name: "Dano:",
-                      value: `${char.equipedItems.arma.nome} - dmg: ⚔ ${char.equipedItems.arma.dmg} - ${char.engCreature.creatureArmor.res} 🦺 = - ${dano} ❤`,
+                      value: `${char.equipedItems.arma.nome} - dmg: ⚔ (${char.equipedItems.arma.dmg} + ${roll}) - ${char.engCreature.creatureArmor.res} 🦺 = - ${dano} ❤`,
                     },
                     {
                       name: "Criatura:",
@@ -233,10 +234,11 @@ module.exports = {
                 //////////////////////////////////////////////////////////////////////////////
                 //char perde
               } else {
+                let roll = (Math.floor(Math.random() * 3) + 1)
                 //neutraliza o dano com a armadura
-                let dano =
-                  char.engCreature.creatureWeapon.dmg -
-                  char.equipedItems.armadura.res;
+                let dano = roll +
+                  (char.engCreature.creatureWeapon.dmg -
+                  char.equipedItems.armadura.res)
                 if (dano < 0) dano = 0;
 
                 //atualiza os dados na DB
@@ -255,7 +257,7 @@ module.exports = {
                     },
                     {
                       name: "Dano:",
-                      value: `${char.engCreature.creatureWeapon.nome} - dmg: ⚔${char.engCreature.creatureWeapon.dmg} - ${char.equipedItems.armadura.res} 🦺 = - ${dano} ❤`,
+                      value: `${char.engCreature.creatureWeapon.nome} - dmg: ⚔ (${char.engCreature.creatureWeapon.dmg} + ${roll}) - ${char.equipedItems.armadura.res} 🦺 = - ${dano} ❤`,
                       inline: true,
                     },
                     {

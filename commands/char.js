@@ -33,7 +33,7 @@ module.exports = {
                 {name: '🧠Experiência:', value: `${char.charLvl.currXp}/${char.charLvl.xpNextLvl}` , inline: true},
                 {name: '❤ Vida:', value: `${char.hitPoints.currHp}/${char.hitPoints.maxHp}` , inline: true},
                 {name: '💰 Ouro:', value: `${char.gold} gp`, inline: true},
-                {name: '🧴 Poção de vida:', value: `${char.potions.currPotions}/${char.potions.maxPotions}`, inline: true},
+                {name: '🧴 Poções de cura:', value: `${char.potions.currPotions}/${char.potions.maxPotions}`, inline: true},
                 {name: '\u200B', value: `\u200B`},
                 {name: '⚔ Status de combate:', value: `Engajado com: ${char.engCreature.creatureName}`},
               )            
