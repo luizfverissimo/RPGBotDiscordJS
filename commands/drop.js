@@ -45,7 +45,8 @@ module.exports = {
                       value: `Utilize o comando **!drop slotX yes** para confirmar o descarte do item!.`,
                     }
                   );
-
+                
+                  
                 if (!args[1]) {
                   message.channel.send(renderItemDrop);
 
