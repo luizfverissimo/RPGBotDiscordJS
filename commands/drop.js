@@ -61,7 +61,7 @@ module.exports = {
                       value: `Utilize o comando **!take** para guarda o item segurado na mochila!.`,
                     });
 
-                  message.channel.send(renderItemDroped);
+                  message.channel.send(renderItemDroped).then(msg => msg.delete({timeout: 5000}));
 
                   //retira o item da DB
                   slotItem.nome = "Vazio";
@@ -110,12 +110,12 @@ module.exports = {
             } else {
               message.reply(
                 "Você precisa definir o slot do inventário que deseja largar, somente um slot por vez. (!drop slot1, por exemplo)"
-              );
+              ).then(msg => msg.delete({timeout: 5000}));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then(msg => msg.delete({timeout: 5000}));
           }
         });
       })

@@ -20,7 +20,6 @@ module.exports = {
         console.log("Database Connected - retrieve");
         //procura o cadastro na DB
         CharDB.findOne({ userID: message.author.id }, async (err, char) => {
-          console.log(char);
           if (err) console.log(err);
           
           if (char != undefined) {
@@ -40,10 +39,12 @@ module.exports = {
             //render
             let msgBot = await message.channel.send(renderMsg)
             await msgBot.react('🎒')
-            await msgBot.delete({timeout: 20000})
+            await msgBot.react('🔎')
+            
             
             const filterReaction = (reaction, user) => {              
-              if(reaction.emoji.name === '🎒' && user.id === message.author.id){
+              if(["🎒", "🔎"].includes(reaction.emoji.name) &&
+              user.id === message.author.id){
                 return true
               }
             };
@@ -57,21 +58,21 @@ module.exports = {
                 const reaction = collected.first();
 
                 if (reaction.emoji.name === "🎒") {
-                  console.log('executou?')
-                  /*
                   const command = require('../commands/inv');
                   command.execute(message, args)
-                  */
                   
-                } 
+                } else {
+                  const command = require('../commands/enemy');
+                  command.execute(message, args)
+                }
               })
               .catch()
 
-
+            await msgBot.delete({timeout: 20000})
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then(msg => msg.delete({timeout: 5000}));
           }
         });
       })

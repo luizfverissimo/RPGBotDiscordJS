@@ -19,7 +19,7 @@ module.exports = {
       .then(() => {
         console.log("Database Connected - retrieve");
         //procura o cadastro na DB
-        CharDB.findOne({ userID: message.author.id }, (err, char) => {
+        CharDB.findOne({ userID: message.author.id }, async (err, char) => {
           if (err) console.log(err);
           
           if (char != undefined) {
@@ -41,7 +41,8 @@ module.exports = {
                 {name: '🖐 Item segurado:', value: `${char.itemRecebido.nome}`},
               )     
             //render
-            message.channel.send(renderMsg)
+            let msgBot = await message.channel.send(renderMsg)
+            await msgBot.delete({timeout: 20000})
 
           } else {
             message.reply(
