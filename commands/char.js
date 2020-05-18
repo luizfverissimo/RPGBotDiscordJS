@@ -19,7 +19,7 @@ module.exports = {
       .then(() => {
         console.log("Database Connected - retrieve");
         //procura o cadastro na DB
-        CharDB.findOne({ userID: message.author.id }, (err, char) => {
+        CharDB.findOne({ userID: message.author.id }, async (err, char) => {
           console.log(char);
           if (err) console.log(err);
           
@@ -38,7 +38,35 @@ module.exports = {
                 {name: '⚔ Status de combate:', value: `Engajado com: ${char.engCreature.creatureName}`},
               )            
             //render
-            message.channel.send(renderMsg)
+            let msgBot = await message.channel.send(renderMsg)
+            await msgBot.react('🎒')
+            await msgBot.delete({timeout: 20000})
+            
+            const filterReaction = (reaction, user) => {              
+              if(reaction.emoji.name === '🎒' && user.id === message.author.id){
+                return true
+              }
+            };
+
+            msgBot
+              .awaitReactions(filterReaction, {
+                max: 1,
+                time: 10000,
+              })
+              .then((collected) => {
+                const reaction = collected.first();
+
+                if (reaction.emoji.name === "🎒") {
+                  console.log('executou?')
+                  /*
+                  const command = require('../commands/inv');
+                  command.execute(message, args)
+                  */
+                  
+                } 
+              })
+              .catch()
+
 
           } else {
             message.reply(

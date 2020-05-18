@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const client = new Discord.Client()
+const client = new Discord.Client();
 
 module.exports = {
   name: "drop",
@@ -21,11 +21,11 @@ module.exports = {
       .then(() => {
         console.log("Database Connected - retrieve");
         //procura o cadastro na DB
-        CharDB.findOne({ userID: message.author.id }, (err, char) => {
+        CharDB.findOne({ userID: message.author.id }, async (err, char) => {
           if (err) console.log(err);
 
           if (char != undefined) {
-            if (args[0].includes('slot') && args.length < 3) {
+            if (args[0] && args[0].includes("slot") && args.length < 3) {
               const slotItem = char.backpack[args[0]];
 
               if (slotItem.nome === "Vazio") {
@@ -43,26 +43,16 @@ module.exports = {
                     },
                     {
                       name: "\u200b",
-                      value: `Utilize o comando **!drop slotX yes** para confirmar o descarte do item!.`,
+                      value: `Clique em ✅ ou utilize o comando **!drop slotX yes** para confirmar o descarte do item!.`,
                     }
                   );
 
-                  message.channel.send(renderItemDrop)
-
-                  client.on('message', message =>{
-                    if(message.author.bot){
-                      message.react('✅')
-                    }
-                  })
-                  
-
-
+                let msgBot = await message.channel.send(renderItemDrop)
+                await msgBot.react("✅")
+                await msgBot.react("❌")
                 
-                /*
-                if (!args[1]) {
-                  message.channel.send(renderItemDrop);
 
-                } else if (args[1] === "yes") {
+                const renderDrop = () => {
                   const renderItemDroped = new Discord.MessageEmbed()
                     .setColor("#e68612")
                     .setTitle(`📦 Você largou o item ${slotItem.nome}? ⬇`)
@@ -81,12 +71,42 @@ module.exports = {
                   slotItem.res = 0;
                   slotItem.def = 0;
                   slotItem.val = 0;
-                }
-                */
-              }
 
-              //salvar na DB
-              char.save();
+                  //salvar na DB
+                  char.save();
+                }
+                
+                const filterReaction = (reaction, user) => {
+                  if (
+                    ["✅", "❌"].includes(reaction.emoji.name) &&
+                    user.id === message.author.id
+                  ) {
+                    console.log("filtrou");
+                    return true;
+                  }
+                };
+
+                msgBot
+                  .awaitReactions(filterReaction, {
+                    max: 1,
+                    time: 10000,
+                  })
+                  .then((collected) => {
+                    const reaction = collected.first();
+
+                    if (reaction.emoji.name === "✅") {
+                      renderDrop();
+                    } else {
+                      message.reply("Você não descartou o item.").then(msg => msg.delete({timeout: 5000}));
+                      
+                    }
+                  })
+                  .catch(() => message.reply("Tempo esgotado!").then(msg => msg.delete({timeout: 5000})))
+
+                await msgBot.delete({timeout: 10000})
+              }  
+              
+
             } else {
               message.reply(
                 "Você precisa definir o slot do inventário que deseja largar, somente um slot por vez. (!drop slot1, por exemplo)"
