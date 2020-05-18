@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const client = new Discord.Client()
 
 module.exports = {
   name: "drop",
@@ -45,8 +46,19 @@ module.exports = {
                       value: `Utilize o comando **!drop slotX yes** para confirmar o descarte do item!.`,
                     }
                   );
-                
+
+                  message.channel.send(renderItemDrop)
+
+                  client.on('message', message =>{
+                    if(message.author.bot){
+                      message.react('✅')
+                    }
+                  })
                   
+
+
+                
+                /*
                 if (!args[1]) {
                   message.channel.send(renderItemDrop);
 
@@ -70,6 +82,7 @@ module.exports = {
                   slotItem.def = 0;
                   slotItem.val = 0;
                 }
+                */
               }
 
               //salvar na DB
