@@ -61,18 +61,18 @@ module.exports = {
             if (args[0].includes('slot') && args.length < 2) {
               //render
               if(args[0] === 'arma' || args[0] === 'escudo' || args[0] === 'armadura'){
-                message.channel.send(renderShowItem(char.equipedItems[args[0]]));
+                message.channel.send(renderShowItem(char.equipedItems[args[0]])).then((msg) => msg.delete({ timeout: 10000 }));
               } else {
-                message.channel.send(renderShowItem(char.backpack[args[0]]))
+                message.channel.send(renderShowItem(char.backpack[args[0]])).then((msg) => msg.delete({ timeout: 10000 }))
               }
             } else {
-              message.reply('Defina um slot que você deseja inspecionar (slot1..., arma, escudo ou armadura).')
+              message.reply('Defina um slot que você deseja inspecionar (slot1..., arma, escudo ou armadura).').then((msg) => msg.delete({ timeout: 10000 }))
             }
 
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })

@@ -70,7 +70,7 @@ module.exports = {
                     }
                   );
 
-                message.channel.send(renderMsgWinner);
+                message.channel.send(renderMsgWinner).then((msg) => msg.delete({ timeout: 10000 }));
 
                 //confere se a criatura está viva ou não
                 if (char.engCreature.creatureHp.currHp <= 0) {
@@ -110,7 +110,7 @@ module.exports = {
                         value: `🧠 Você recebeu ${battleXp} xp - xp atual: ${char.charLvl.currXp}/${char.charLvl.xpNextLvl}`,
                       });
 
-                    message.channel.send(renderLvlUp);
+                    message.channel.send(renderLvlUp).then((msg) => msg.delete({ timeout: 10000 }));
                   }
 
                   //add gold
@@ -162,31 +162,13 @@ module.exports = {
                       },
                       {
                         name: "Itens:",
-                        value: `📦 Você achou um(a) ${item.tipo} - ${item.nome}!`,
+                        value: `📦 Você achou um(a) ${item.tipo} - ${item.nome} - Atributos: ATK: ${item.atk}, DMG: ${item.dmg}, DEF ${item.def}, RES: ${item.res}, VAL: ${item.val} gp`,
                       }
                     );
 
-                    const renderRecebido = new Discord.MessageEmbed()
-                      .setColor("#e68612")
-                      .setTitle(
-                        `📦⛔ Você não possui slot vazio para receber o item, o que deseja fazer com o item recebido?`
-                      )
-                      .addFields({
-                        name: `${char.itemRecebido.nome}`,
-                        value: `ATK:${char.itemRecebido.atk}, DMG: ${char.itemRecebido.dmg}, DEF: ${char.itemRecebido.def}, RES: ${char.itemRecebido.res}, VAL: ${char.itemRecebido.val} gp `,
-                      },
-                        {
-                        name: "!drop slotX",
-                        value: `Descarta o item do respectivo slot do seu inventário.`,
-                      },
-                      {
-                        name: "!take",
-                        value: `Guarda o item recebido no slot vago.`,
-                      }
-                      );
                   
                   //envia msg
-                  message.channel.send(renderDeathCreature);
+                  message.channel.send(renderDeathCreature).then((msg) => msg.delete({ timeout: 10000 }));
 
                   if (counter === 0) {
                     char.itemRecebido.nome = item.nome;
@@ -216,7 +198,7 @@ module.exports = {
                       }
                       );
 
-                    message.channel.send(renderRecebido)
+                    message.channel.send(renderRecebido).then((msg) => msg.delete({ timeout: 10000 }))
                   }
                   
 
@@ -267,7 +249,7 @@ module.exports = {
                     }
                   );
 
-                message.channel.send(renderMsgWinner);
+                message.channel.send(renderMsgWinner).then((msg) => msg.delete({ timeout: 10000 }));
 
                 //confere se o jogador está vivo ou não
                 if (char.hitPoints.currHp <= 0) {
@@ -305,7 +287,7 @@ module.exports = {
                         value: `Você perdeu a(o) ${char.equipedItems[itemSorteado].nome}.`,
                       }
                     );
-                  message.channel.send(renderIncapacitado);
+                  message.channel.send(renderIncapacitado).then((msg) => msg.delete({ timeout: 20000 }));
 
                   //retira o item da DB
                   char.equipedItems[itemSorteado].nome = "Vazio";
@@ -334,12 +316,12 @@ module.exports = {
             } else {
               message.reply(
                 "Você não está em combate, Guerreiro! Caso queira arrumar briga, siga para as criptas e utilize o comando **!explore**."
-              );
+              ).then((msg) => msg.delete({ timeout: 10000 }));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })

@@ -25,7 +25,7 @@ module.exports = {
       if (data != undefined) {
         message.reply(
           `❌ Você já possui um personagem em nossa base de dados, utilize o comando !char para acessa-lo.`
-        );
+        ).then((msg) => msg.delete({ timeout: 10000 }));
       } else {
         //Cria uma novo char
         const char = new CharDB({
@@ -125,7 +125,7 @@ module.exports = {
             //render resposta
             message.reply(
               "⚔ Seu personagem foi criado! - utilize o comando **!char** para ver seu personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 10000 }));
           })
           .catch((err) => console.log(err));
       }

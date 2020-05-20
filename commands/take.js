@@ -56,7 +56,7 @@ module.exports = {
                   char.itemRecebido.val = 0
   
                   counter++;
-                  message.channel.send(renderItem)
+                  message.channel.send(renderItem).then((msg) => msg.delete({ timeout: 10000 }))
                   return true;
                 }
               });
@@ -64,7 +64,7 @@ module.exports = {
               if (counter === 0) {
                 message.reply(
                   "Você não possui slot vazio para receber o item, utilize o comando **!drop slotX** para largar um item."
-                );
+                ).then((msg) => msg.delete({ timeout: 10000 }));
               }
             }
             else {

@@ -44,7 +44,7 @@ module.exports = {
                   .setTitle(`${encounter.texto}`)
                   .setDescription("Ao investigar você encontrou...");
 
-                message.channel.send(renderEncontro);
+                message.channel.send(renderEncontro).then((msg) => msg.delete({ timeout: 10000 }));
 
                 //render loot do encontro
                 if (encounter.isGold) {
@@ -55,7 +55,7 @@ module.exports = {
 
                   char.gold += encounter.gold
 
-                  message.channel.send(render)
+                  message.channel.send(render).then((msg) => msg.delete({ timeout: 10000 }))
                 }
 
                 if(encounter.isArma){
@@ -68,7 +68,7 @@ module.exports = {
                       value: `ATK:${encounter.atk}, DMG: ${encounter.dmg}, DEF: ${encounter.def}, RES: ${encounter.res}, VAL: ${encounter.val} gp `,
                     })                  
 
-                  message.channel.send(render)
+                  message.channel.send(render).then((msg) => msg.delete({ timeout: 10000 }))
                   
                   //Add o item
                   let counter = 0;
@@ -122,7 +122,7 @@ module.exports = {
                     .setColor("#e01616")
                     .setTitle(`‼ Você ativou uma armadilha ‼`)
                     .setDescription(`Perdeu - ${encounter.dano} ❤ - Vida atual: ${char.hitPoints.currHp}/${char.hitPoints.maxHp} ❤.`);                  
-                  message.channel.send(render)
+                  message.channel.send(render).then((msg) => msg.delete({ timeout: 10000 }))
                 }
 
               } else {
@@ -168,19 +168,19 @@ module.exports = {
                   );
 
                 //render
-                message.channel.send(renderMsg);
+                message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }));
               }
             } else {
               message.reply(
                 "Você já está em combate! Utilize o comando **!enemy** para ver o inimigo que está engajado."
-              );
+              ).then((msg) => msg.delete({ timeout: 10000 }));
             }
 
             char.save();
           } else {
             message.channel.send(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })

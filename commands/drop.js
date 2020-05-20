@@ -31,8 +31,10 @@ module.exports = {
               if (slotItem.nome === "Vazio") {
                 message.reply(
                   "Você precisa escolher um slot que possua um item."
-                );
+                ).delete({ timeout: 5000 });
               } else if (slotItem.nome !== "Vazio") {
+
+                //render caso não add yes
                 const renderItemDrop = new Discord.MessageEmbed()
                   .setColor("#e68612")
                   .setTitle(`📦 Você deseja largar o item ${slotItem.nome}? ⬇`)
@@ -47,11 +49,7 @@ module.exports = {
                     }
                   );
 
-                let msgBot = await message.channel.send(renderItemDrop)
-                await msgBot.react("✅")
-                await msgBot.react("❌")
-                
-
+                //render caso seja aceito o drop
                 const renderDrop = () => {
                   const renderItemDroped = new Discord.MessageEmbed()
                     .setColor("#e68612")
@@ -61,7 +59,9 @@ module.exports = {
                       value: `Utilize o comando **!take** para guarda o item segurado na mochila!.`,
                     });
 
-                  message.channel.send(renderItemDroped).then(msg => msg.delete({timeout: 5000}));
+                  message.channel
+                    .send(renderItemDroped)
+                    .then((msg) => msg.delete({ timeout: 10000 }));
 
                   //retira o item da DB
                   slotItem.nome = "Vazio";
@@ -74,48 +74,71 @@ module.exports = {
 
                   //salvar na DB
                   char.save();
-                }
-                
-                const filterReaction = (reaction, user) => {
-                  if (
-                    ["✅", "❌"].includes(reaction.emoji.name) &&
-                    user.id === message.author.id
-                  ) {
-                    console.log("filtrou");
-                    return true;
-                  }
                 };
 
-                msgBot
-                  .awaitReactions(filterReaction, {
-                    max: 1,
-                    time: 10000,
-                  })
-                  .then((collected) => {
-                    const reaction = collected.first();
+                //comando caso não tenha yes
+                let msgBot
+                if (!args[1]) {
+                  msgBot = await message.channel.send(renderItemDrop);
+                  await msgBot.react("✅");
+                  await msgBot.react("❌");
 
-                    if (reaction.emoji.name === "✅") {
-                      renderDrop();
-                    } else {
-                      message.reply("Você não descartou o item.").then(msg => msg.delete({timeout: 5000}));
-                      
+                  const filterReaction = (reaction, user) => {
+                    if (
+                      ["✅", "❌"].includes(reaction.emoji.name) &&
+                      user.id === message.author.id
+                    ) {
+                      console.log("filtrou");
+                      return true;
                     }
-                  })
-                  .catch(() => message.reply("Tempo esgotado!").then(msg => msg.delete({timeout: 5000})))
+                  };
 
-                await msgBot.delete({timeout: 10000})
-              }  
-              
+                  msgBot
+                    .awaitReactions(filterReaction, {
+                      max: 1,
+                      time: 10000,
+                    })
+                    .then((collected) => {
+                      const reaction = collected.first();
 
+                      if (reaction.emoji.name === "✅") {
+                        renderDrop();
+                      } else {
+                        message
+                          .reply("Você não descartou o item.")
+                          .then((msg) => msg.delete({ timeout: 10000 }));
+                      }
+                    })
+                    .catch(() =>
+                      message
+                        .reply("Tempo esgotado!")
+                        .then((msg) => msg.delete({ timeout: 10000 }))
+                    );
+
+                    await msgBot.delete({ timeout: 10000 });
+                }
+
+                //caso tenha yes
+                if (args[1] === "yes") {
+                  renderDrop();
+
+                }
+
+                
+              }
             } else {
-              message.reply(
-                "Você precisa definir o slot do inventário que deseja largar, somente um slot por vez. (!drop slot1, por exemplo)"
-              ).then(msg => msg.delete({timeout: 5000}));
+              message
+                .reply(
+                  "Você precisa definir o slot do inventário que deseja largar, somente um slot por vez. (!drop slot1, por exemplo)"
+                )
+                .then((msg) => msg.delete({ timeout: 10000 }));
             }
           } else {
-            message.reply(
-              "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            ).then(msg => msg.delete({timeout: 5000}));
+            message
+              .reply(
+                "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
+              )
+              .then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })

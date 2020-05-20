@@ -41,13 +41,12 @@ module.exports = {
                 {name: '🖐 Item segurado:', value: `${char.itemRecebido.nome}`},
               )     
             //render
-            let msgBot = await message.channel.send(renderMsg)
-            await msgBot.delete({timeout: 20000})
+            message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }))            
 
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })

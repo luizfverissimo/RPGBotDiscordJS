@@ -20,13 +20,13 @@ module.exports = {
       .then(() => {
         console.log("Database Connected - retrieve");
         //procura o cadastro na DB
-        CharDB.findOne({ userID: message.author.id }, (err, char) => {
+        CharDB.findOne({ userID: message.author.id }, async (err, char) => {
           if (err) console.log(err);
           if (char != undefined) {
             if (args[0]) {
               if (args[0].includes("slot") && args.length < 3) {
                 const slotItem = char.backpack[args[0]];
-                const sellPrice = slotItem.val - ((slotItem.val / 100) * 10);
+                const sellPrice = Math.floor(slotItem.val - (slotItem.val / 100) * 10);
 
                 if (slotItem.nome === "Vazio") {
                   message.reply(
@@ -52,12 +52,8 @@ module.exports = {
                       }
                     );
 
-                  //se não enviou o comando yes, pergunte se quer realizar a compra
-                  if (!args[1]) {
-                    message.channel.send(renderItemSell);
-
-                    //caso responda yes - realiza a compra
-                  } else if (args[1] === "yes") {
+                  //função render
+                  const sellItem = () => {
                     char.gold += sellPrice;
 
                     const renderItemVendido = new Discord.MessageEmbed()
@@ -65,15 +61,15 @@ module.exports = {
                       .setTitle(
                         `📦 Você vendeu o item ${slotItem.nome} por +${sellPrice} gp 💰!`
                       )
-                      .setDescription(
-                        `Seu saldo atual é de 💰${char.gold} gp `
-                      )
+                      .setDescription(`Seu saldo atual é de 💰${char.gold} gp `)
                       .addFields({
                         name: "\u200b",
                         value: `O item foi retirado de seu inventário, utilize o comando **!inv** para verificar sua mochila.`,
                       });
                     //envia msg que foi adicionado
-                    message.channel.send(renderItemVendido);
+                    message.channel
+                      .send(renderItemVendido)
+                      .then((msg) => msg.delete({ timeout: 10000 }));
 
                     //retira o item da lista
                     slotItem.nome = "Vazio";
@@ -83,25 +79,77 @@ module.exports = {
                     slotItem.res = 0;
                     slotItem.def = 0;
                     slotItem.val = 0;
+                  };
+                  //se não enviou o comando yes, pergunte se quer realizar a compra
+                  let msgBot
+                  if (!args[1]) {
+                    msgBot = await message.channel.send(renderItemSell);
+                    await msgBot.react("✅");
+                    await msgBot.react("❌");
+
+                    const filterReaction = (reaction, user) => {
+                      if (
+                        ["✅", "❌"].includes(reaction.emoji.name) &&
+                        user.id === message.author.id
+                      ) {
+                        console.log("filtrou");
+                        return true;
+                      }
+                    };
+
+                    msgBot
+                      .awaitReactions(filterReaction, {
+                        max: 1,
+                        time: 10000,
+                      })
+                      .then((collected) => {
+                        const reaction = collected.first();
+
+                        if (reaction.emoji.name === "✅") {
+                          //venda;
+                          sellItem();
+                        } else {
+                          message
+                            .reply("Você não vendeu o item.")
+                            .then((msg) => msg.delete({ timeout: 10000 }));
+                        }
+                      })
+                      .catch(() =>
+                        message
+                          .reply("Tempo esgotado!")
+                          .then((msg) => msg.delete({ timeout: 10000 }))
+                      );
+
+                      await msgBot.delete({ timeout: 10000 })
+                    //caso responda yes - realiza a compra
+                  } else if (args[1] === "yes") {
+                    sellItem();
                   }
                 }
               } else {
-                message.reply(
-                  "Você precisa definir um slot do seu invetário que deseja vender, somente um item por vez. (!sell  slot1, por exemplo)"
-                );
+                message
+                  .reply(
+                    "Você precisa definir um slot do seu invetário que deseja vender, somente um item por vez. (!sell  slot1, por exemplo)"
+                  )
+                  .then((msg) => msg.delete({ timeout: 10000 }));
               }
 
+              
               //salvar na DB
               char.save();
             } else {
-              message.reply(
-                "Você precisa definir um slot do seu invetário que deseja vender, somente um item por vez. (!sell slot1, por exemplo)"
-              );
+              message
+                .reply(
+                  "Você precisa definir um slot do seu invetário que deseja vender, somente um item por vez. (!sell slot1, por exemplo)"
+                )
+                .then((msg) => msg.delete({ timeout: 10000 }));
             }
           } else {
-            message.reply(
-              "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            message
+              .reply(
+                "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
+              )
+              .then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })

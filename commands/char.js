@@ -37,38 +37,8 @@ module.exports = {
                 {name: '⚔ Status de combate:', value: `Engajado com: ${char.engCreature.creatureName}`},
               )            
             //render
-            let msgBot = await message.channel.send(renderMsg)
-            await msgBot.react('🎒')
-            await msgBot.react('🔎')
+            message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }))
             
-            
-            const filterReaction = (reaction, user) => {              
-              if(["🎒", "🔎"].includes(reaction.emoji.name) &&
-              user.id === message.author.id){
-                return true
-              }
-            };
-
-            msgBot
-              .awaitReactions(filterReaction, {
-                max: 1,
-                time: 10000,
-              })
-              .then((collected) => {
-                const reaction = collected.first();
-
-                if (reaction.emoji.name === "🎒") {
-                  const command = require('../commands/inv');
-                  command.execute(message, args)
-                  
-                } else {
-                  const command = require('../commands/enemy');
-                  command.execute(message, args)
-                }
-              })
-              .catch()
-
-            await msgBot.delete({timeout: 20000})
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."

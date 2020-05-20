@@ -26,7 +26,7 @@ module.exports = {
             //criando msg e encontro com a criatura
             const renderMsg = new Discord.MessageEmbed()
               .setColor("#e01616")
-              .setTitle(`Você encontrou um ${char.engCreature.creatureName}!`)
+              .setTitle(`Você está em combate com um(a) ${char.engCreature.creatureName}!`)
               .addFields(
                 {
                   name: "❤ Vida:",
@@ -47,16 +47,16 @@ module.exports = {
 
             //render
             if (char.engCreature.emCombate) {
-              message.channel.send(renderMsg);
+              message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }));
             } else {
               message.reply(
                 "Você não está em combate, Guerreiro! Caso queira arrumar briga, siga para as criptas e utilize o comando **!explore**."
-              );
+              ).then((msg) => msg.delete({ timeout: 10000 }));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })

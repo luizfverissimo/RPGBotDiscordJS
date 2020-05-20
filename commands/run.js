@@ -39,7 +39,7 @@ module.exports = {
                     `Volte para as criptas e use o comando **!explore** para novas aventuras.`
                   );
                 //render msg
-                message.channel.send(renderEscape);
+                message.channel.send(renderEscape).then((msg) => msg.delete({ timeout: 10000 }));
               } else {
                 //se aconteceu, retira dano.
                 let dano =
@@ -59,7 +59,7 @@ module.exports = {
                   .setDescription(`Você levou - ${dano} ❤ - Vida atual: ${char.hitPoints.currHp}/${char.hitPoints.maxHp} ❤.`);
 
                 //render
-                message.channel.send(renderAtk);
+                message.channel.send(renderAtk).then((msg) => msg.delete({ timeout: 10000 }));
 
                 //caso haja morte do personagem
                 if (char.hitPoints.currHp <= 0) {
@@ -97,7 +97,7 @@ module.exports = {
                         value: `Você perdeu a(o) ${char.equipedItems[itemSorteado].nome}.`,
                       }
                     );
-                  message.channel.send(renderIncapacitado);
+                  message.channel.send(renderIncapacitado).then((msg) => msg.delete({ timeout: 10000 }));
 
                   //retira o item da DB
                   char.equipedItems[itemSorteado].nome = "Vazio";
@@ -124,12 +124,12 @@ module.exports = {
             } else {
               message.reply(
                 "Você não está em combate, Guerreiro! Caso queira arrumar briga, siga para as criptas e utilize o comando **!explore**."
-              );
+              ).then((msg) => msg.delete({ timeout: 10000 }));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })

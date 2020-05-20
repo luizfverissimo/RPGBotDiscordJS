@@ -20,11 +20,13 @@ module.exports = {
       .then(() => {
         console.log("Database Connected - retrieve");
         //procura o cadastro na DB
-        CharDB.findOne({ userID: message.author.id }, (err, char) => {
+        CharDB.findOne({ userID: message.author.id }, async (err, char) => {
           if (err) console.log(err);
 
           if (char != undefined) {
             if (!char.engCreature.emCombate) {
+              const listPricePlus = Math.floor(250 * (char.charLvl.currLvl + 1))
+
               const render = new Discord.MessageEmbed()
                 .setColor("#e68612")
                 .setTitle(`🛒 Mercado - Lista de itens para venda:`)
@@ -60,20 +62,25 @@ module.exports = {
                   },
                   {
                     name: `\u200b`,
-                    value: `Pagando 10 gp você pode gerar uma nova lista de itens com o comando **!newlist**`,
+                    value: `🔄 Pagando 10 gp você pode gerar uma nova lista de itens com o comando **!newlist**`,
+                  },
+                  {
+                    name: `\u200b`,
+                    value: `🗡 Hey, se você me pagar ${listPricePlus} gp eu consigo uma lista melhor que essa! Utilize o comando **!newlist plus**`,
                   }
                 );
 
-              message.channel.send(render);
+              let msgBot = await message.channel.send(render);
+              msgBot.delete({timeout: 20000})
             } else {
               message.reply(
                 "Você está em combate! Derrote o seu inimigo para utilizar o mercado."
-              );
+              ).then((msg) => msg.delete({ timeout: 10000 }));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 10000 }));
           }
         });
       })
