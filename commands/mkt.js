@@ -29,7 +29,7 @@ module.exports = {
 
               const render = new Discord.MessageEmbed()
                 .setColor("#e68612")
-                .setTitle(`🛒 Mercado - Lista de itens para venda:`)
+                .setTitle(`📜 Mercado - Lista de itens para venda:`)
                 .setDescription(`Você tem 💰 ${char.gold} gp.`)
                 .addFields(
                   {

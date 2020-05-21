@@ -44,7 +44,7 @@ module.exports = {
 
                 const render = new Discord.MessageEmbed()
                   .setColor("#e68612")
-                  .setTitle(`🛒 Nova Lista de itens foi gerada no mercado`)
+                  .setTitle(`📜 Nova Lista de itens foi gerada no mercado`)
                   .addFields({
                     name: `\u200b`,
                     value: `Utilize o comando **!mkt** para ver a nova lista.`,

@@ -26,7 +26,7 @@ module.exports = {
             //criando msg e encontro com a criatura
             const renderMsg = new Discord.MessageEmbed()
               .setColor("#e01616")
-              .setTitle(`Você está em combate com um(a) ${char.engCreature.creatureName}!`)
+              .setTitle(`👹 Você está em combate com um(a) ${char.engCreature.creatureName}!`)
               .addFields(
                 {
                   name: "❤ Vida:",

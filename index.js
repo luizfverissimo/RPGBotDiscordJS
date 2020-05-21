@@ -44,6 +44,8 @@ client.on('message', async message => {
     console.log(error)
     message.reply('Ocorreu um erro tentando executar seu comando! Tente novamente.')
   }
+
+  message.delete({ timeout: 10000 })
 })
 
 
