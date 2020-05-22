@@ -13,12 +13,7 @@ client.on('ready', () => {
   console.log(`Bot foi inicializado!`)
 })
 
-//Teste
-client.on('message', message => {
-	if (message.content === '!join') {
-		client.emit('guildMemberAdd', message.member);
-	}
-});
+
 
 //Cria uma coleção no discord e lê os arquivos de comandos
 client.commands = new Discord.Collection()
@@ -35,6 +30,11 @@ for(const file of commandFiles){
 
 //Listner para os comandos no chat
 client.on('message', async message => {
+  //teste
+  if (message.content === '!join') {
+		client.emit('guildMemberAdd', message.member);
+	}
+
   if(!message.content.startsWith(config.prefix) || message.author.bot) return
 
   const args = message.content.slice(config.prefix.length).split(/ +/)
