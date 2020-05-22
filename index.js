@@ -31,7 +31,7 @@ for(const file of commandFiles){
 //Listner para os comandos no chat
 client.on('message', async message => {
   //teste
-  if (message.content === 'join') {
+  if (message.content === '!join') {
 		client.emit('guildMemberAdd', message.member);
 	}
 
@@ -58,12 +58,13 @@ client.on('message', async message => {
 //MEMBER JOIN EVENT
 
 client.on('guildMemberAdd', member => {
-  const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
+  const channel = member.guild.channels.cache.find(ch => ch.id === '707724421045157889');
+  console.log(member)
   if (!channel) return;
 
   const render =  new Discord.MessageEmbed()
   .setColor("#e68612")
-  .setTitle(`🏯 Seja bem-vindo à Tristan, ${member}! 🏯`)
+  .setTitle(`🏯 Seja bem-vindo à Tristan, ${member.user.username}! 🏯`)
   .setDescription('Terra de aventuras, itens preciosos e criaturas horrendas. Tente a sua sorte nas criptas e se torne o guerreiro mais famoso de Tristan ou morra tentando!')
   .addFields(
     {
@@ -76,11 +77,11 @@ client.on('guildMemberAdd', member => {
     },
     {
       name: "\u200b",
-      value: `🛒 Não se esqueça de ir ao mercado antes de você enfrentar os perigos das criptas.`,
+      value: `🛒 Não se esqueça de ir ao mercado **!mkt** antes de você enfrentar os perigos das criptas.`,
     },
   )
   
-  channel.send(render)
+  channel.send(render).then((msg) => msg.delete({ timeout: 30000 }))
 })
 
 
