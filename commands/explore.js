@@ -108,7 +108,7 @@ module.exports = {
                   if(char.potions.currPotions >= char.potions.maxPotions){
                     char.potions.currPotions = char.potions.maxPotions
                   }
-                  message.channel.send(render)
+                  message.channel.send(render).then((msg) => msg.delete({ timeout: 10000 }))
                 }
 
                 if(encounter.isTrap){
