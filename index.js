@@ -1,13 +1,12 @@
+require('dotenv').config()
 const Discord = require ('discord.js')
 const client = new Discord.Client()
 const config = require('./config.json')
 const fs = require('fs')
 
-
-
 //////////////////////////////////////////////////////////////////////////////
 //BOT LOGIN:
-client.login(process.env.DISCORD_TOKEN)
+client.login(`${process.env.DISCORD_TOKEN}`)
 
 
 client.on('ready', () => {
