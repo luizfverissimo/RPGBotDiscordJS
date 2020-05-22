@@ -47,6 +47,35 @@ client.on('message', async message => {
   message.delete({ timeout: 10000 })
 })
 
+//////////////////////////////////////////////////////////////////////////////
+//MEMBER JOIN EVENT
+
+client.on('guildMemberAdd', member => {
+  const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
+  if (!channel) return;
+
+  const render =  new Discord.MessageEmbed()
+  .setColor("#e68612")
+  .setTitle(`🏯 Seja bem-vindo à Tristan, ${member}! 🏯`)
+  .setDescription('Terra de aventuras, itens preciosos e criaturas horrendas. Tente a sua sorte nas criptas e se torne o guerreiro mais famoso de Tristan ou morra tentando!')
+  .addFields(
+    {
+      name: "\u200b",
+      value: `🧙‍♂️ Utilize o comando **!newgame** para criar seu guerreiro e iniciar a sua aventura.`,
+    },
+    {
+      name: "\u200b",
+      value: `📜 A qualquer momento você pode utilizar o comando **!help** para ver a lista de comandos.`,
+    },
+    {
+      name: "\u200b",
+      value: `🛒 Não se esqueça de ir ao mercado antes de você enfrentar os perigos das criptas.`,
+    },
+  )
+  
+  channel.send(render)
+})
+
 
 
 
