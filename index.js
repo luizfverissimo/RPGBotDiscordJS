@@ -13,6 +13,13 @@ client.on('ready', () => {
   console.log(`Bot foi inicializado!`)
 })
 
+//Teste
+client.on('message', message => {
+	if (message.content === '!join') {
+		client.emit('guildMemberAdd', message.member);
+	}
+});
+
 //Cria uma coleção no discord e lê os arquivos de comandos
 client.commands = new Discord.Collection()
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
