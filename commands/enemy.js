@@ -47,16 +47,16 @@ module.exports = {
 
             //render
             if (char.engCreature.emCombate) {
-              message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }));
+              message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 20000 }));
             } else {
               message.reply(
                 "Você não está em combate, Guerreiro! Caso queira arrumar briga, siga para as criptas e utilize o comando **!explore**."
-              ).then((msg) => msg.delete({ timeout: 10000 }));
+              ).then((msg) => msg.delete({ timeout: 20000 }));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            ).then((msg) => msg.delete({ timeout: 10000 }));
+            ).then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

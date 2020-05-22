@@ -37,7 +37,7 @@ module.exports = {
                 {name: '⚔ Status de combate:', value: `Engajado com: ${char.engCreature.creatureName}`},
               )            
             //render
-            message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }))
+            message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 20000 }))
             
           } else {
             message.reply(

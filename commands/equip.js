@@ -49,7 +49,7 @@ module.exports = {
               if (slotItem.nome === "Vazio") {
                 message.reply(
                   "O slot que você tentou equipar não possui um item, selecione um slot válido."
-                ).then((msg) => msg.delete({ timeout: 10000 }));
+                ).then((msg) => msg.delete({ timeout: 20000 }));
               } else if (slotItem.tipo === "arma") {
                 //armazena as informações do item equipado
                 const equipedNome = char.equipedItems.arma.nome;
@@ -62,7 +62,7 @@ module.exports = {
                 message.channel.send(
                   renderTrocaItem(equipedNome, equipedTipo, slotItem)
                 )
-                .then((msg) => msg.delete({ timeout: 10000 }));
+                .then((msg) => msg.delete({ timeout: 20000 }));
 
                 //adicionar as informações do slot para o item equipado
                 char.equipedItems.arma.nome = slotItem.nome;
@@ -91,7 +91,7 @@ module.exports = {
                 message.channel.send(
                   renderTrocaItem(equipedNome, equipedTipo, slotItem)
                 )
-                .then((msg) => msg.delete({ timeout: 10000 }));
+                .then((msg) => msg.delete({ timeout: 20000 }));
 
                 //adicionar as informações do slot para o item equipado
                 char.equipedItems.escudo.nome = slotItem.nome;
@@ -119,7 +119,7 @@ module.exports = {
                 message.channel.send(
                   renderTrocaItem(equipedNome, equipedTipo, slotItem)
                 )
-                .then((msg) => msg.delete({ timeout: 10000 }));
+                .then((msg) => msg.delete({ timeout: 20000 }));
 
                 //adicionar as informações do slot para o item equipado
                 char.equipedItems.armadura.nome = slotItem.nome;
@@ -147,12 +147,12 @@ module.exports = {
             } else {
               message.reply(
                 "Você precisa definir o slot do inventário que deseja equipar, somente um slot por vez. (!equip slot1, por exemplo)"
-              ).then((msg) => msg.delete({ timeout: 10000 }));
+              ).then((msg) => msg.delete({ timeout: 20000 }));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            ).then((msg) => msg.delete({ timeout: 10000 }));
+            ).then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

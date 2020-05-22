@@ -69,7 +69,7 @@ module.exports = {
                     //envia msg que foi adicionado
                     message.channel
                       .send(renderItemVendido)
-                      .then((msg) => msg.delete({ timeout: 10000 }));
+                      .then((msg) => msg.delete({ timeout: 20000 }));
 
                     //retira o item da lista
                     slotItem.nome = "Vazio";
@@ -100,7 +100,7 @@ module.exports = {
                     msgBot
                       .awaitReactions(filterReaction, {
                         max: 1,
-                        time: 10000,
+                        time: 20000,
                       })
                       .then((collected) => {
                         const reaction = collected.first();
@@ -111,16 +111,16 @@ module.exports = {
                         } else {
                           message
                             .reply("Você não vendeu o item.")
-                            .then((msg) => msg.delete({ timeout: 10000 }));
+                            .then((msg) => msg.delete({ timeout: 20000 }));
                         }
                       })
                       .catch(() =>
                         message
                           .reply("Tempo esgotado!")
-                          .then((msg) => msg.delete({ timeout: 10000 }))
+                          .then((msg) => msg.delete({ timeout: 20000 }))
                       );
 
-                      await msgBot.delete({ timeout: 10000 })
+                      await msgBot.delete({ timeout: 20000 })
                     //caso responda yes - realiza a compra
                   } else if (args[1] === "yes") {
                     sellItem();
@@ -131,7 +131,7 @@ module.exports = {
                   .reply(
                     "Você precisa definir um slot do seu invetário que deseja vender, somente um item por vez. (!sell  slot1, por exemplo)"
                   )
-                  .then((msg) => msg.delete({ timeout: 10000 }));
+                  .then((msg) => msg.delete({ timeout: 20000 }));
               }
 
               
@@ -142,14 +142,14 @@ module.exports = {
                 .reply(
                   "Você precisa definir um slot do seu invetário que deseja vender, somente um item por vez. (!sell slot1, por exemplo)"
                 )
-                .then((msg) => msg.delete({ timeout: 10000 }));
+                .then((msg) => msg.delete({ timeout: 20000 }));
             }
           } else {
             message
               .reply(
                 "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
               )
-              .then((msg) => msg.delete({ timeout: 10000 }));
+              .then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

@@ -62,7 +62,7 @@ module.exports = {
                     .reply(
                       "O item que você escolheu não existe, selecione um item diferente de vazio. Caso todos estejam vazio, você pode gerar uma nova lista com o comando **!newlist**."
                     )
-                    .delete({ timeout: 10000 });
+                    .delete({ timeout: 20000 });
                 }
 
                 //se for selecionado um item da lista
@@ -96,7 +96,7 @@ module.exports = {
                         value: `Resolva o que você irá fazer com o item segurando antes de finalizar a compra.`,
                       });
 
-                    message.channel.send(render).delete({ timeout: 10000 });
+                    message.channel.send(render).delete({ timeout: 20000 });
                   };
 
                   const renderCompra = () => {
@@ -145,7 +145,7 @@ module.exports = {
                     //envia msg que foi adicionado
                     message.channel
                       .send(renderItemComprado)
-                      .then((msg) => msg.delete({ timeout: 10000 }))
+                      .then((msg) => msg.delete({ timeout: 20000 }))
 
                     //retira o item da lista
                     slotItem.nome = "Vazio";
@@ -180,7 +180,7 @@ module.exports = {
                     msgBot
                       .awaitReactions(filterReaction, {
                         max: 1,
-                        time: 10000,
+                        time: 20000,
                       })
                       .then((collected) => {
                         const reaction = collected.first();
@@ -197,7 +197,7 @@ module.exports = {
                                 .reply(
                                   "❌ Você não possui ouro o suficiente para realizar essa compra! Se aventure nas criptas para conseguir algum ouro."
                                 )
-                                .delete({ timeout: 10000 });
+                                .delete({ timeout: 20000 });
                             }
                           }
                         } else {
@@ -212,7 +212,7 @@ module.exports = {
                           .then((msg) => msg.delete({ timeout: 5000 }))
                       );
 
-                    await msgBot.delete({ timeout: 10000 });
+                    await msgBot.delete({ timeout: 20000 });
                     //caso responda yes - realiza a compra
                   } else if (args[1] === "yes") {
                     //verifica se o char tem um item segurado
@@ -228,7 +228,7 @@ module.exports = {
                           .reply(
                             "❌ Você não possui ouro o suficiente para realizar essa compra! Se aventure nas criptas para conseguir algum ouro."
                           )
-                          .delete({ timeout: 10000 });
+                          .delete({ timeout: 20000 });
                       }
                     }
                   }
@@ -238,21 +238,21 @@ module.exports = {
                   .reply(
                     "Você precisa definir o item do mercado que deseja comprar, somente um item por vez. (!buy slot1, por exemplo)"
                   )
-                  .delete({ timeout: 10000 });
+                  .delete({ timeout: 20000 });
               }
             } else {
               message
                 .reply(
                   "Você precisa definir o item do mercado que deseja comprar, somente um item por vez. (!buy slot1, por exemplo)"
                 )
-                .delete({ timeout: 10000 });
+                .delete({ timeout: 20000 });
             }
           } else {
             message
               .reply(
                 "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
               )
-              .delete({ timeout: 10000 });
+              .delete({ timeout: 20000 });
           }
         });
       })

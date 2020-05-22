@@ -56,7 +56,7 @@ module.exports = {
                   char.itemRecebido.val = 0
   
                   counter++;
-                  message.channel.send(renderItem).then((msg) => msg.delete({ timeout: 10000 }))
+                  message.channel.send(renderItem).then((msg) => msg.delete({ timeout: 20000 }))
                   return true;
                 }
               });
@@ -64,11 +64,11 @@ module.exports = {
               if (counter === 0) {
                 message.reply(
                   "Você não possui slot vazio para receber o item, utilize o comando **!drop slotX** para largar um item."
-                ).then((msg) => msg.delete({ timeout: 10000 }));
+                ).then((msg) => msg.delete({ timeout: 20000 }));
               }
             }
             else {
-              message.reply('Você não possui nenhum item segurado.')
+              message.reply('Você não possui nenhum item segurado.').then((msg) => msg.delete({ timeout: 20000 }))
             }
             
 
@@ -78,7 +78,7 @@ module.exports = {
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            );
+            ).then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

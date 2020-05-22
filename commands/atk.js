@@ -70,7 +70,7 @@ module.exports = {
                     }
                   );
 
-                message.channel.send(renderMsgWinner).then((msg) => msg.delete({ timeout: 10000 }));
+                message.channel.send(renderMsgWinner).then((msg) => msg.delete({ timeout: 20000 }));
 
                 //confere se a criatura está viva ou não
                 if (char.engCreature.creatureHp.currHp <= 0) {
@@ -110,7 +110,7 @@ module.exports = {
                         value: `🧠 Você recebeu ${battleXp} xp - xp atual: ${char.charLvl.currXp}/${char.charLvl.xpNextLvl}`,
                       });
 
-                    message.channel.send(renderLvlUp).then((msg) => msg.delete({ timeout: 10000 }));
+                    message.channel.send(renderLvlUp).then((msg) => msg.delete({ timeout: 20000 }));
                   }
 
                   //add gold
@@ -168,7 +168,7 @@ module.exports = {
 
                   
                   //envia msg
-                  message.channel.send(renderDeathCreature).then((msg) => msg.delete({ timeout: 10000 }));
+                  message.channel.send(renderDeathCreature).then((msg) => msg.delete({ timeout: 20000 }));
 
                   if (counter === 0) {
                     char.itemRecebido.nome = item.nome;
@@ -198,7 +198,7 @@ module.exports = {
                       }
                       );
 
-                    message.channel.send(renderRecebido).then((msg) => msg.delete({ timeout: 10000 }))
+                    message.channel.send(renderRecebido).then((msg) => msg.delete({ timeout: 20000 }))
                   }
                   
 
@@ -249,7 +249,7 @@ module.exports = {
                     }
                   );
 
-                message.channel.send(renderMsgWinner).then((msg) => msg.delete({ timeout: 10000 }));
+                message.channel.send(renderMsgWinner).then((msg) => msg.delete({ timeout: 20000 }));
 
                 //confere se o jogador está vivo ou não
                 if (char.hitPoints.currHp <= 0) {
@@ -316,12 +316,12 @@ module.exports = {
             } else {
               message.reply(
                 "Você não está em combate, Guerreiro! Caso queira arrumar briga, siga para as criptas e utilize o comando **!explore**."
-              ).then((msg) => msg.delete({ timeout: 10000 }));
+              ).then((msg) => msg.delete({ timeout: 20000 }));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            ).then((msg) => msg.delete({ timeout: 10000 }));
+            ).then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

@@ -34,7 +34,7 @@ module.exports = {
                     `🧴 Você está com a vida cheia! Guarde esta poção para mais tarde. ❤`
                   );
 
-                message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }));
+                message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 20000 }));
               } else {
                 //cura o char
                 char.hitPoints.currHp += potionHeal;
@@ -65,11 +65,11 @@ module.exports = {
                     }
                   );
 
-                message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }));
+                message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 20000 }));
               }
 
             } else {
-              message.reply('Você não possui mais poções de cura! Vá até o mercado para comprar mais.').then((msg) => msg.delete({ timeout: 10000 }))
+              message.reply('Você não possui mais poções de cura! Vá até o mercado para comprar mais.').then((msg) => msg.delete({ timeout: 20000 }))
               
             }
 
@@ -77,7 +77,7 @@ module.exports = {
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            ).then((msg) => msg.delete({ timeout: 10000 }));
+            ).then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

@@ -61,7 +61,7 @@ module.exports = {
 
                   message.channel
                     .send(renderItemDroped)
-                    .then((msg) => msg.delete({ timeout: 10000 }));
+                    .then((msg) => msg.delete({ timeout: 20000 }));
 
                   //retira o item da DB
                   slotItem.nome = "Vazio";
@@ -96,7 +96,7 @@ module.exports = {
                   msgBot
                     .awaitReactions(filterReaction, {
                       max: 1,
-                      time: 10000,
+                      time: 20000,
                     })
                     .then((collected) => {
                       const reaction = collected.first();
@@ -106,16 +106,16 @@ module.exports = {
                       } else {
                         message
                           .reply("Você não descartou o item.")
-                          .then((msg) => msg.delete({ timeout: 10000 }));
+                          .then((msg) => msg.delete({ timeout: 20000 }));
                       }
                     })
                     .catch(() =>
                       message
                         .reply("Tempo esgotado!")
-                        .then((msg) => msg.delete({ timeout: 10000 }))
+                        .then((msg) => msg.delete({ timeout: 20000 }))
                     );
 
-                    await msgBot.delete({ timeout: 10000 });
+                    await msgBot.delete({ timeout: 20000 });
                 }
 
                 //caso tenha yes
@@ -131,14 +131,14 @@ module.exports = {
                 .reply(
                   "Você precisa definir o slot do inventário que deseja largar, somente um slot por vez. (!drop slot1, por exemplo)"
                 )
-                .then((msg) => msg.delete({ timeout: 10000 }));
+                .then((msg) => msg.delete({ timeout: 20000 }));
             }
           } else {
             message
               .reply(
                 "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
               )
-              .then((msg) => msg.delete({ timeout: 10000 }));
+              .then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

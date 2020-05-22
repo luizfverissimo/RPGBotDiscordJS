@@ -33,20 +33,20 @@ module.exports = {
                 {name: '🛡 Escudo:', value: `${char.equipedItems.escudo.nome} - DEF: ${char.equipedItems.escudo.def}`, inline: true},
                 {name: '🦺 Armadura:', value: `${char.equipedItems.armadura.nome} - RES: ${char.equipedItems.armadura.res}`, inline: true},
                 {name: `**Mochila:** - Slots:${char.backpack.maxSlots}`, value: `\u200b`},
-                {name: '📦1️⃣ Slot 1:', value: `${char.backpack.slot1.nome}`},
-                {name: '📦2️⃣ Slot 2:', value: `${char.backpack.slot2.nome}`},
-                {name: '📦3️⃣ Slot 3:', value: `${char.backpack.slot3.nome}`},
-                {name: '📦4️⃣ Slot 4:', value: `${char.backpack.slot4.nome}`},
-                {name: '📦5️⃣ Slot 5:', value: `${char.backpack.slot5.nome}`},
-                {name: '🖐 Item segurado:', value: `${char.itemRecebido.nome}`},
+                {name: '📦1️⃣ Slot 1:', value: `${char.backpack.slot1.nome} - ATK:${char.backpack.slot1.atk}, DMG: ${char.backpack.slot1.dmg}, DEF: ${char.backpack.slot1.def}, RES: ${char.backpack.slot1.res}, VAL:${char.backpack.slot1.val} gp`},
+                {name: '📦2️⃣ Slot 2:', value: `${char.backpack.slot2.nome} - ATK:${char.backpack.slot2.atk}, DMG: ${char.backpack.slot2.dmg}, DEF: ${char.backpack.slot2.def}, RES: ${char.backpack.slot2.res}, VAL:${char.backpack.slot2.val} gp`},
+                {name: '📦3️⃣ Slot 3:', value: `${char.backpack.slot3.nome} - ATK:${char.backpack.slot3.atk}, DMG: ${char.backpack.slot3.dmg}, DEF: ${char.backpack.slot3.def}, RES: ${char.backpack.slot3.res}, VAL:${char.backpack.slot3.val} gp`},
+                {name: '📦4️⃣ Slot 4:', value: `${char.backpack.slot4.nome} - ATK:${char.backpack.slot4.atk}, DMG: ${char.backpack.slot4.dmg}, DEF: ${char.backpack.slot4.def}, RES: ${char.backpack.slot4.res}, VAL:${char.backpack.slot4.val} gp`},
+                {name: '📦5️⃣ Slot 5:', value: `${char.backpack.slot5.nome} - ATK:${char.backpack.slot5.atk}, DMG: ${char.backpack.slot5.dmg}, DEF: ${char.backpack.slot5.def}, RES: ${char.backpack.slot5.res}, VAL:${char.backpack.slot5.val} gp`},
+                {name: '🖐 Item segurado:', value: `${char.itemRecebido.nome} - ATK:${char.itemRecebido.atk}, DMG: ${char.itemRecebido.dmg}, DEF: ${char.itemRecebido.def}, RES: ${char.itemRecebido.res}, VAL:${char.itemRecebido.val} gp`},
               )     
             //render
-            message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 10000 }))            
+            message.channel.send(renderMsg).then((msg) => msg.delete({ timeout: 20000 }))            
 
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            ).then((msg) => msg.delete({ timeout: 10000 }));
+            ).then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

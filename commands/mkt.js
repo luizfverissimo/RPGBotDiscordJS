@@ -75,12 +75,12 @@ module.exports = {
             } else {
               message.reply(
                 "Você está em combate! Derrote o seu inimigo para utilizar o mercado."
-              ).then((msg) => msg.delete({ timeout: 10000 }));
+              ).then((msg) => msg.delete({ timeout: 20000 }));
             }
           } else {
             message.reply(
               "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
-            ).then((msg) => msg.delete({ timeout: 10000 }));
+            ).then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })

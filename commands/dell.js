@@ -30,9 +30,9 @@ module.exports = {
                 (err, char) => {
                   if (err) console.log(err);
                   if (char === undefined) {
-                    message.reply('O seu personagem foi deletado, caso queria criar um novo personagem utilize o comando **!newgame**.').then((msg) => msg.delete({ timeout: 10000 }))
+                    message.reply('O seu personagem foi deletado, caso queria criar um novo personagem utilize o comando **!newgame**.').then((msg) => msg.delete({ timeout: 20000 }))
                   } else {
-                    message.reply('O seu personagem foi deletado, caso queria criar um novo personagem utilize o comando **!newgame**.').then((msg) => msg.delete({ timeout: 10000 }))
+                    message.reply('O seu personagem foi deletado, caso queria criar um novo personagem utilize o comando **!newgame**.').then((msg) => msg.delete({ timeout: 20000 }))
                   }
                 }
               );
@@ -70,7 +70,7 @@ module.exports = {
             msgBot
               .awaitReactions(filterReaction, {
                 max: 1,
-                time: 10000,
+                time: 20000,
               })
               .then((collected) => {
                 const reaction = collected.first();
@@ -89,14 +89,14 @@ module.exports = {
                   .then((msg) => msg.delete({ timeout: 5000 }))
               );
 
-            await msgBot.delete({ timeout: 10000 });
+            await msgBot.delete({ timeout: 20000 });
 
           } else {
             message
               .reply(
                 "Você não possui personagem criado, utilize o comando **!newgame** para criar um novo personagem."
               )
-              .then((msg) => msg.delete({ timeout: 10000 }));
+              .then((msg) => msg.delete({ timeout: 20000 }));
           }
         });
       })
