@@ -31,7 +31,7 @@ for(const file of commandFiles){
 //Listner para os comandos no chat
 client.on('message', async message => {
   //teste
-  if (message.content === '!join') {
+  if (message.content === 'join') {
 		client.emit('guildMemberAdd', message.member);
 	}
 
