@@ -1,1 +1,1 @@
-worker: node indes.js
+worker: node index.js
