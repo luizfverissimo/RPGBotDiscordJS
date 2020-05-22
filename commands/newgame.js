@@ -2,7 +2,7 @@ const CharDB = require("../models/CharDB.js");
 const mongoose = require("mongoose");
 const ItemList = require('../classes/ItemList')
 
-const uri = `mongodb+srv://${process.env.mongoUser}:${process.env.mongoPassword}@cluster0-v4wt0.gcp.mongodb.net/charDB?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0-v4wt0.gcp.mongodb.net/charDB?retryWrites=true&w=majority`;
 
 module.exports = {
   name: "newgame",

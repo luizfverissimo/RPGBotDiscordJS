@@ -7,7 +7,7 @@ const fs = require('fs')
 
 //////////////////////////////////////////////////////////////////////////////
 //BOT LOGIN:
-client.login(config.token)
+client.login(process.env.DISCORD_TOKEN)
 
 
 client.on('ready', () => {

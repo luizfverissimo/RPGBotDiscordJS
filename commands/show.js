@@ -7,7 +7,7 @@ module.exports = {
     const mongoose = require("mongoose");
     const CharDB = require("../models/CharDB.js");
 
-    const uri = `mongodb+srv://${process.env.mongoUser}:${process.env.mongoPassword}@cluster0-v4wt0.gcp.mongodb.net/charDB?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0-v4wt0.gcp.mongodb.net/charDB?retryWrites=true&w=majority`;
 
     mongoose
       .connect(uri, {
