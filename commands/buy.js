@@ -190,6 +190,7 @@ module.exports = {
                         if (reaction.emoji.name === "✅") {
                           if (char.itemRecebido.nome !== "Vazio") {
                             renderAviso();
+                            collected.stop()
                           } else {
                             //se tiver o dinheiro suficiente
                             if (char.gold >= slotItem.val) {
@@ -208,11 +209,7 @@ module.exports = {
                             .then((msg) => msg.delete({ timeout: 5000 }));
                         }
                       })
-                      .catch(() =>
-                        message
-                          .reply("Tempo esgotado!")
-                          .then((msg) => msg.delete({ timeout: 5000 }))
-                      );
+                      .catch();
 
                     await msgBot.delete({ timeout: 20000 });
                     //caso responda yes - realiza a compra

@@ -115,11 +115,7 @@ module.exports = {
                             .then((msg) => msg.delete({ timeout: 20000 }));
                         }
                       })
-                      .catch(() =>
-                        message
-                          .reply("Tempo esgotado!")
-                          .then((msg) => msg.delete({ timeout: 20000 }))
-                      );
+                      .catch();
 
                       await msgBot.delete({ timeout: 20000 })
                     //caso responda yes - realiza a compra

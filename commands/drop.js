@@ -103,17 +103,14 @@ module.exports = {
 
                       if (reaction.emoji.name === "✅") {
                         renderDrop();
+                        collected.stop()
                       } else {
                         message
                           .reply("Você não descartou o item.")
                           .then((msg) => msg.delete({ timeout: 20000 }));
                       }
                     })
-                    .catch(() =>
-                      message
-                        .reply("Tempo esgotado!")
-                        .then((msg) => msg.delete({ timeout: 20000 }))
-                    );
+                    .catch();
 
                     await msgBot.delete({ timeout: 20000 });
                 }
