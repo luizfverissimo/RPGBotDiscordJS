@@ -31,7 +31,7 @@ module.exports = {
                 if (slotItem.nome === "Vazio") {
                   message.reply(
                     "O item que você escolheu não existe, selecione um item diferente de vazio."
-                  );
+                  ).then((msg) => msg.delete({ timeout: 20000 }));
                 }
 
                 //se for selecionado um item da lista
@@ -108,6 +108,7 @@ module.exports = {
                         if (reaction.emoji.name === "✅") {
                           //venda;
                           sellItem();
+                          collected.stop()
                         } else {
                           message
                             .reply("Você não vendeu o item.")
