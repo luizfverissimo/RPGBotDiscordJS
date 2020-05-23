@@ -24,7 +24,8 @@ module.exports = {
           if (err) console.log(err);
           if (char != undefined) {
             if (args[0]) {
-              if (args[0] && args[0].includes("potion") && args.length < 3) {
+
+              if (args[0] && args[0].includes("potion") && args.length < 2) {
                 const potionPrice = 30;
 
                 if (
@@ -44,7 +45,7 @@ module.exports = {
                       value: `💰 Saldo atual: ${char.gold} gp - 🧴 Poções de cura: ${char.potions.currPotions}/${char.potions.maxPotions} `,
                     });
 
-                  message.channel.send(renderPotion);
+                  message.channel.send(renderPotion).then(msg => msg.delete({timeout: 20000}));
                 } else {
                   message.reply(
                     "❌ Você não possui ouro o suficiente para realizar essa compra! Se aventure nas criptas para conseguir algum ouro."
@@ -155,9 +156,6 @@ module.exports = {
                     slotItem.res = 0;
                     slotItem.def = 0;
                     slotItem.val = 0;
-
-                    //salvar na DB
-                    char.save();
                   };
 
                   //se não enviou o comando yes, pergunte se quer realizar a compra
@@ -240,6 +238,9 @@ module.exports = {
                   )
                   .delete({ timeout: 20000 });
               }
+
+              //salvar na DB
+              char.save();
             } else {
               message
                 .reply(
