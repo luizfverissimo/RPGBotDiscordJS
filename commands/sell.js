@@ -26,12 +26,16 @@ module.exports = {
             if (args[0]) {
               if (args[0].includes("slot") && args.length < 3) {
                 const slotItem = char.backpack[args[0]];
-                const sellPrice = Math.floor(slotItem.val - (slotItem.val / 100) * 10);
+                const sellPrice = Math.floor(
+                  slotItem.val - (slotItem.val / 100) * 10
+                );
 
                 if (slotItem.nome === "Vazio") {
-                  message.reply(
-                    "O item que você escolheu não existe, selecione um item diferente de vazio."
-                  ).then((msg) => msg.delete({ timeout: 20000 }));
+                  message
+                    .reply(
+                      "O item que você escolheu não existe, selecione um item diferente de vazio."
+                    )
+                    .then((msg) => msg.delete({ timeout: 20000 }));
                 }
 
                 //se for selecionado um item da lista
@@ -79,9 +83,12 @@ module.exports = {
                     slotItem.res = 0;
                     slotItem.def = 0;
                     slotItem.val = 0;
+
+                    //salvar na DB
+                    char.save();
                   };
                   //se não enviou o comando yes, pergunte se quer realizar a compra
-                  let msgBot
+                  let msgBot;
                   if (!args[1]) {
                     msgBot = await message.channel.send(renderItemSell);
                     await msgBot.react("✅");
@@ -108,7 +115,7 @@ module.exports = {
                         if (reaction.emoji.name === "✅") {
                           //venda;
                           sellItem();
-                          collected.stop()
+                          collected.stop();
                         } else {
                           message
                             .reply("Você não vendeu o item.")
@@ -117,7 +124,7 @@ module.exports = {
                       })
                       .catch();
 
-                      await msgBot.delete({ timeout: 20000 })
+                    await msgBot.delete({ timeout: 20000 });
                     //caso responda yes - realiza a compra
                   } else if (args[1] === "yes") {
                     sellItem();
@@ -130,10 +137,6 @@ module.exports = {
                   )
                   .then((msg) => msg.delete({ timeout: 20000 }));
               }
-
-              
-              //salvar na DB
-              char.save();
             } else {
               message
                 .reply(
