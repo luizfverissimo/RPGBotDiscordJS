@@ -47,6 +47,9 @@ module.exports = {
                   message.channel
                     .send(renderPotion)
                     .then((msg) => msg.delete({ timeout: 20000 }));
+
+                    //salvar na DB
+                    char.save();
                 } else if (
                   (char.potions.currPotions = char.potions.maxPotions)
                 ) {
